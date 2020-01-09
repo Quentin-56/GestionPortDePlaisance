@@ -48,14 +48,29 @@ public class ProprietaireControleurVue {
 	class ModifierListener implements ActionListener
 	{
 
+		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(table.getSelectedRow() != -1)
 			{
-				
+				Proprietaire proprio = modele.getListeProprietaire().get(table.getSelectedRow());
+				JTextField nom = new JTextField(proprio.getNom());
+			    JTextField adresse = new JTextField(proprio.getAdresse());
+			    JOptionPane.showOptionDialog(null, new Object[] {"Nom :", nom, "Adresse :", adresse},
+			      "Proprietaire",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
+			    if(nom.getText().equals("") || adresse.getText().equals("")){
+			    	JOptionPane d = new JOptionPane();
+			    	d.showMessageDialog( null, "Nom ou Adresse manquant", "Erreur ajout proprietaire", JOptionPane.ERROR_MESSAGE);
+			    }else{
+			    	proprio.setNom(nom.getText());
+			    	proprio.setAdresse(adresse.getText());
+			    	ProprietaireDAO.modifierProprietaire(proprio);
+			    	modele.setListeProprietaire(ProprietaireDAO.recupererTousLesProprietaires());
+					modele.fireTableStructureChanged();
+			    }
+			}
 			}
 			
-		}
 		
 	}
 	

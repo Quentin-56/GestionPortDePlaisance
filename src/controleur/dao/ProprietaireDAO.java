@@ -31,9 +31,9 @@ public class ProprietaireDAO {
 		   EntityManager em =SetupEM.getEm();
 
 	        em.getTransaction().begin();
-
+	        
 	        em.merge(proprio);
-
+	        
 	        em.getTransaction().commit();
 	}
 	/**
