@@ -51,6 +51,12 @@ public class Bateau {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Bateau [idBateau=" + idBateau + ", nom=" + nom + ", poids=" + poids + "]";
+	}
+
+
 	//Getters et setters
 	public int getIdBateau() {
 		return idBateau;

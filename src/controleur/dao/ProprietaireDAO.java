@@ -29,7 +29,7 @@ public class ProprietaireDAO {
 	 */
 	public static void modifierProprietaire(Proprietaire proprio){
 
-		EntityManager em =SetupEM.getEm();
+		EntityManager em = SetupEM.getEm();
 
 	    em.getTransaction().begin();
 	        

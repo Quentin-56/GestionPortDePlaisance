@@ -21,7 +21,6 @@ public class BateauMoteur extends Bateau{
 		this.nombreChevauxVapeur = nombreChevauxVapeur;
 	}
 	
-	
 	/**
 	 * Constructeur par defaut appelant le constructeur par defaut de Bateau
 	 */
