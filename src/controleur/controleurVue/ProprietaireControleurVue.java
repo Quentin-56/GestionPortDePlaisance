@@ -3,7 +3,9 @@ package controleur.controleurVue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import modele.Proprietaire;
 import controleur.dao.ProprietaireDAO;
@@ -23,10 +25,23 @@ public class ProprietaireControleurVue {
 	class AjouterListener implements ActionListener
 	{
 
+		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+		    JTextField nom = new JTextField();
+		    JTextField adresse = new JTextField();
+		    JOptionPane.showOptionDialog(null, new Object[] {"Nom :", nom, "Adresse :", adresse},
+		      "Proprietaire",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
+		    if(nom.getText().equals("") || adresse.getText().equals("")){
+		    	JOptionPane d = new JOptionPane();
+		    	d.showMessageDialog( null, "Nom ou Adresse manquant", "Erreur ajout proprietaire", JOptionPane.ERROR_MESSAGE);
+		    }else{
+		    	ProprietaireDAO.ajouterProprietaire(nom.getText(), adresse.getText());
+		    	modele.setListeProprietaire(ProprietaireDAO.recupererTousLesProprietaires());
+				modele.fireTableStructureChanged();
+		    }
 		}
+		
 		
 	}
 	
@@ -47,6 +62,7 @@ public class ProprietaireControleurVue {
 	class SupprimerListener implements ActionListener
 	{
 
+		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(table.getSelectedRow() != -1)
