@@ -1,6 +1,7 @@
 package controleur.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -49,7 +50,7 @@ public class ProprietaireDAO {
 	/**
 	 * Trouver proprietaire avec son id
 	 * @param idProprio
-	 * @return
+	 * @return Proprietaire
 	 */
 	public static Proprietaire trouverProprietaireAvecSonId(int idProprio){
 		EntityManager em =SetupEM.getEm();
@@ -60,5 +61,15 @@ public class ProprietaireDAO {
         em.getTransaction().commit();
         
         return proprio;
+	}
+	/**
+	 * Recuperer tous les proprietaires
+	 * @return liste de proprietaire
+	 */
+	public static List<Proprietaire> recupererTousLesProprietaires(){
+		
+		
+		return null;
+		
 	}
 }

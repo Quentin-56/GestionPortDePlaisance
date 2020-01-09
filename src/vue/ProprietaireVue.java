@@ -51,6 +51,7 @@ public class ProprietaireVue extends JFrame{
 		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		new ProprietaireControleurVue();
 

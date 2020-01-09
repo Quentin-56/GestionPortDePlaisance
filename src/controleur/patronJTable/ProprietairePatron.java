@@ -1,9 +1,14 @@
 package controleur.patronJTable;
+import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
+
+import modele.Proprietaire;
 
 public class ProprietairePatron extends AbstractTableModel{
 	
 	private static String[] entetes = {"Nom", "Adresse"};
+	private static List<Proprietaire> listeProprietaire;
 	@Override
 	public int getColumnCount() {
 		return entetes.length;
@@ -12,7 +17,7 @@ public class ProprietairePatron extends AbstractTableModel{
 	@Override
 	public int getRowCount() {
 	
-		return 0;
+		return listeProprietaire.size();
 	}
 
 	@Override
@@ -20,10 +25,10 @@ public class ProprietairePatron extends AbstractTableModel{
 		switch(columnIndex)
 		{
 	        case 0:
-	            return null;
+	            return listeProprietaire.get(rowIndex).getNom();
 	       
 	        case 1:
-	        	return null;
+	        	return listeProprietaire.get(rowIndex).getAdresse();
 	        
 	 		default:
 	 			return null; //Ne devrait jamais arriver	
