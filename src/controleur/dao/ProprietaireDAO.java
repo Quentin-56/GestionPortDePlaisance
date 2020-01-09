@@ -17,24 +17,25 @@ public class ProprietaireDAO {
 	 */
 	public static void ajouterProprietaire(String nom, String adresse){
 		Proprietaire proprio = new Proprietaire(nom, adresse, new ArrayList());
-		 EntityManager em =SetupEM.getEm();
-	     em.getTransaction().begin();
-	     //Ajout du proprio dans la bdd
-	     em.persist(proprio);
-	     em.getTransaction().commit();
+		EntityManager em =SetupEM.getEm();
+	    em.getTransaction().begin();
+	    //Ajout du proprio dans la bdd
+	    em.persist(proprio);
+	    em.getTransaction().commit();
 	}
 	/**
 	 * Modifier un proprietaire
 	 * @param proprio le proprietaire modifie
 	 */
 	public static void modifierProprietaire(Proprietaire proprio){
-		   EntityManager em =SetupEM.getEm();
 
-	        em.getTransaction().begin();
+		EntityManager em =SetupEM.getEm();
+
+	    em.getTransaction().begin();
 	        
-	        em.merge(proprio);
+	    em.merge(proprio);
 	        
-	        em.getTransaction().commit();
+	    em.getTransaction().commit();
 	}
 	/**
 	 * Supprimer un proprietaire
