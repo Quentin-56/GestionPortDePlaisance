@@ -12,8 +12,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		new SetupEM();
-	     //ProprietaireDAO.ajouterProprietaire("Patrick", "Rue des Patricks");
-	     new ProprietaireVue();
+	    ProprietaireDAO.ajouterProprietaire("Patrick", "Rue des Patricks");
+	    new ProprietaireVue();
 	}
 
 }

@@ -40,4 +40,22 @@ public class ProprietairePatron extends AbstractTableModel{
 	public String getColumnName(int columnIndex) {
         return entetes[columnIndex];
     }
+
+	public static String[] getEntetes() {
+		return entetes;
+	}
+
+	public static void setEntetes(String[] entetes) {
+		ProprietairePatron.entetes = entetes;
+	}
+
+	public static List<Proprietaire> getListeProprietaire() {
+		return listeProprietaire;
+	}
+
+	public static void setListeProprietaire(List<Proprietaire> listeProprietaire) {
+		ProprietairePatron.listeProprietaire = listeProprietaire;
+	}
+	
+	
 }

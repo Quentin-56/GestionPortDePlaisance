@@ -69,4 +69,54 @@ public class ProprietaireVue extends JFrame{
 		supprimer.addActionListener(supprimerListener);
 		
 	}
+
+	public JPanel getPanelwest() {
+		return panelwest;
+	}
+
+	public void setPanelwest(JPanel panelwest) {
+		this.panelwest = panelwest;
+	}
+
+	public static JButton getAjouter() {
+		return ajouter;
+	}
+
+	public static void setAjouter(JButton ajouter) {
+		ProprietaireVue.ajouter = ajouter;
+	}
+
+	public static JButton getModifier() {
+		return modifier;
+	}
+
+	public static void setModifier(JButton modifier) {
+		ProprietaireVue.modifier = modifier;
+	}
+
+	public static JButton getSupprimer() {
+		return supprimer;
+	}
+
+	public static void setSupprimer(JButton supprimer) {
+		ProprietaireVue.supprimer = supprimer;
+	}
+
+	public static JTable getTable() {
+		return table;
+	}
+
+	public static void setTable(JTable table) {
+		ProprietaireVue.table = table;
+	}
+
+	public static ProprietairePatron getModele() {
+		return modele;
+	}
+
+	public static void setModele(ProprietairePatron modele) {
+		ProprietaireVue.modele = modele;
+	}
+	
+	
 }
