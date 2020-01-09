@@ -4,12 +4,13 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import controleur.dao.ProprietaireDAO;
 import modele.Proprietaire;
 
 public class ProprietairePatron extends AbstractTableModel{
 	
 	private static String[] entetes = {"Nom", "Adresse"};
-	private static List<Proprietaire> listeProprietaire = new ArrayList();
+	private static List<Proprietaire> listeProprietaire = ProprietaireDAO.recupererTousLesProprietaires();
 	@Override
 	public int getColumnCount() {
 		return entetes.length;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import modele.Proprietaire;
 
@@ -18,7 +19,7 @@ public class ProprietaireDAO {
 		Proprietaire proprio = new Proprietaire(nom, adresse, new ArrayList());
 		 EntityManager em =SetupEM.getEm();
 	     em.getTransaction().begin();
-	     //Ajout du rayon dans la bdd
+	     //Ajout du proprio dans la bdd
 	     em.persist(proprio);
 	     em.getTransaction().commit();
 	}
@@ -67,9 +68,9 @@ public class ProprietaireDAO {
 	 * @return liste de proprietaire
 	 */
 	public static List<Proprietaire> recupererTousLesProprietaires(){
-		
-		
-		return null;
-		
+		Query requete = SetupEM.getEm().createQuery("from Proprietaire");
+	    List<Proprietaire> listeProprio =requete.getResultList();
+	    return listeProprio;
+
 	}
 }
