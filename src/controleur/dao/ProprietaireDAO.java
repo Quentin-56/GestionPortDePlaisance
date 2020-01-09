@@ -1,4 +1,4 @@
-package controleur;
+package controleur.dao;
 
 import java.util.ArrayList;
 
