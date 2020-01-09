@@ -1,4 +1,4 @@
-package modele;
+package controleur.controleurVue;
 
 public enum TypeDeBateau {
 	BateauAVoile("Voilier"),
