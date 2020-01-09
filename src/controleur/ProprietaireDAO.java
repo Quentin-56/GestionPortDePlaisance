@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 
 import modele.Proprietaire;
 
-public class proprietaireDAO {
+public class ProprietaireDAO {
 	
 	/**
 	 * Creer un proprietaire dans la BDD
