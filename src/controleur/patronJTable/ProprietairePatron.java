@@ -1,4 +1,5 @@
 package controleur.patronJTable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
@@ -8,7 +9,7 @@ import modele.Proprietaire;
 public class ProprietairePatron extends AbstractTableModel{
 	
 	private static String[] entetes = {"Nom", "Adresse"};
-	private static List<Proprietaire> listeProprietaire;
+	private static List<Proprietaire> listeProprietaire = new ArrayList();
 	@Override
 	public int getColumnCount() {
 		return entetes.length;
@@ -35,4 +36,7 @@ public class ProprietairePatron extends AbstractTableModel{
 	      
 		}
 	}
+	public String getColumnName(int columnIndex) {
+        return entetes[columnIndex];
+    }
 }
