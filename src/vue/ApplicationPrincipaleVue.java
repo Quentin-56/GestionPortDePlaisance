@@ -2,12 +2,14 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,10 +23,11 @@ import modele.Quai;
 public class ApplicationPrincipaleVue extends JFrame {
 	
 	private JPanel panelwest = new JPanel();
-	private static JButton gestionProprietaires, gestionEmplacements, gestionBateaux, gestionQuais;
+	private static JButton gestionProprietaires, gestionEmplacements, gestionQuais, ajouter, supprimer, modifier;
 	private static JTable table;
 	private static JComboBox comboboxQuais;
 	private static BateauPatron modele = new BateauPatron();
+	private JLabel gestionBateaux, quais;
 
 	public ApplicationPrincipaleVue(){
 		this.setTitle("Gestion du Port");
@@ -32,17 +35,27 @@ public class ApplicationPrincipaleVue extends JFrame {
 		// Creation boite verticale pour inserer les composants du panel de gauche
 		Box verticalBox = Box.createVerticalBox();
 		panelwest.add(verticalBox);
+		quais = new JLabel("Quais");
 		comboboxQuais = new JComboBox<Quai>();
 		gestionQuais = new JButton("Gestion quais");
 		gestionProprietaires = new JButton("Gestion propriétaires");
 		gestionEmplacements = new JButton("Gestion emplacements");
-		gestionBateaux = new JButton("Gestion bateaux");
+		gestionBateaux = new JLabel("Gestion bateaux");
+		ajouter = new JButton("Ajouter");
+		supprimer = new JButton("Supprimer");
+		modifier = new JButton("Modifier");
 		
+		verticalBox.add(quais);
 		verticalBox.add(comboboxQuais);
+		verticalBox.add(Box.createRigidArea(new Dimension(0, 20)));
 		verticalBox.add(gestionQuais);
 		verticalBox.add(gestionProprietaires);
 		verticalBox.add(gestionEmplacements);
+		verticalBox.add(Box.createRigidArea(new Dimension(0, 20)));
 		verticalBox.add(gestionBateaux);
+		verticalBox.add(ajouter);
+		verticalBox.add(supprimer);
+		verticalBox.add(modifier);
 		
 		table = new JTable(modele);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -66,8 +79,16 @@ public class ApplicationPrincipaleVue extends JFrame {
 	public static void comboboxListener(ActionListener changeListener) {
 		comboboxQuais.addActionListener(changeListener);
 	}
-	public static void gestionBateauxListener(ActionListener actionListener) {
-		gestionBateaux.addActionListener(actionListener);
+	public static void ajouterListener(ActionListener ajouterListener) {
+		ajouter.addActionListener(ajouterListener);
+		
+	}
+	public static void modifierListener(ActionListener modifierListener) {
+		modifier.addActionListener(modifierListener);
+		
+	}
+	public static void supprimerListener(ActionListener supprimerListener) {
+		supprimer.addActionListener(supprimerListener);
 		
 	}
 	public static void gestionEmplacementsListener(ActionListener actionListener) {
