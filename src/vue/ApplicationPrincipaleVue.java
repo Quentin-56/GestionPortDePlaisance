@@ -62,8 +62,25 @@ public class ApplicationPrincipaleVue extends JFrame {
 		new ApplicationPrincipaleControleurVue();
 	}
 	
+	//Definir les actions sur les boutons
 	public static void comboboxListener(ActionListener changeListener) {
 		comboboxQuais.addActionListener(changeListener);
+	}
+	public static void gestionBateauxListener(ActionListener actionListener) {
+		gestionBateaux.addActionListener(actionListener);
+		
+	}
+	public static void gestionEmplacementsListener(ActionListener actionListener) {
+		gestionEmplacements.addActionListener(actionListener);
+		
+	}
+	public static void gestionProprietairesListener(ActionListener actionListener) {
+		gestionProprietaires.addActionListener(actionListener);
+		
+	}
+	public static void gestionQuaisListener(ActionListener actionListener) {
+		gestionQuais.addActionListener(actionListener);
+		
 	}
 	
 	//Getters et setters

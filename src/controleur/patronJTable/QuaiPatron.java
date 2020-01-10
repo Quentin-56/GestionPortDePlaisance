@@ -12,6 +12,12 @@ public class QuaiPatron extends AbstractTableModel{
 	private String[] entetes = {"Code", "Nombre d'emplacements"};
 	private List<Quai> listesQuais = new ArrayList<Quai>(); 
 	
+	public void ajouterQuai(Quai quai)
+	{
+		listesQuais.add(quai);
+		this.fireTableRowsInserted(listesQuais.size()-1, listesQuais.size()-1);
+	}
+	
 	@Override
 	public int getColumnCount() {
 		return entetes.length;
@@ -50,6 +56,6 @@ public class QuaiPatron extends AbstractTableModel{
 
 	public void setListesQuais(List<Quai> listesQuais) {
 		this.listesQuais = listesQuais;
+		this.fireTableDataChanged();
 	}
-
 }

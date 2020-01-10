@@ -15,17 +15,23 @@ import modele.Emplacement;
 import modele.Port;
 import modele.Quai;
 import vue.ApplicationPrincipaleVue;
+import vue.ProprietaireVue;
+import vue.QuaiVue;
 
 public class ApplicationPrincipaleControleurVue {
 	
-	JComboBox comboboxQuai = ApplicationPrincipaleVue.getComboboxQuais();
-	Port port = PortDAO.retournerPort();
-	BateauPatron modele = ApplicationPrincipaleVue.getModele();
-	JTable table = ApplicationPrincipaleVue.getTable();
+	private JComboBox comboboxQuai = ApplicationPrincipaleVue.getComboboxQuais();
+	private Port port = PortDAO.retournerPort();
+	private BateauPatron modele = ApplicationPrincipaleVue.getModele();
+	private JTable table = ApplicationPrincipaleVue.getTable();
 	
 	public ApplicationPrincipaleControleurVue()
 	{
 		ApplicationPrincipaleVue.comboboxListener(new ComboboxListener());
+		ApplicationPrincipaleVue.gestionQuaisListener(new GestionQuaisListener());
+		ApplicationPrincipaleVue.gestionProprietairesListener(new GestionProprietairesListener());
+		ApplicationPrincipaleVue.gestionBateauxListener(new GestionBateauListener());
+		ApplicationPrincipaleVue.gestionEmplacementsListener(new GestionEmplacementsListener());
 		
 		//Parcourir tout les quais du port et ajouter au combobox
 		for(Quai quai : port.getListeDeQuais())
@@ -42,7 +48,11 @@ public class ApplicationPrincipaleControleurVue {
 		List<Bateau> bateaux = new ArrayList<>();
 		for(Emplacement emplacement : quai.getListeEmplacements())
 		{
-			bateaux.add(emplacement.getBateau());
+			//Si l'emplacement possede un bateau
+			if(emplacement.getBateau() != null)
+			{
+				bateaux.add(emplacement.getBateau());
+			}
 		}
 		
 		modele.setListesBateaux(bateaux);
@@ -51,7 +61,6 @@ public class ApplicationPrincipaleControleurVue {
 	
 	class ComboboxListener implements ActionListener
 	{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
@@ -59,4 +68,41 @@ public class ApplicationPrincipaleControleurVue {
 			afficherBateauxDuQuai(quai);
 		}
 	}
+	
+	class GestionQuaisListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			QuaiVue quaiVue = new QuaiVue(port);
+		}
+	}
+	
+	class GestionProprietairesListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			new ProprietaireVue();
+		}
+	}
+	
+	class GestionBateauListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			//Rien encore
+		}
+	}
+	
+	class GestionEmplacementsListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			//Rien encore
+		}
+	}
+	
 }

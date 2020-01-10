@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -12,18 +13,19 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import controleur.controleurVue.ProprietaireControleurVue;
-import controleur.patronJTable.ProprietairePatron;
+import controleur.controleurVue.QuaiControleurVue;
+import controleur.patronJTable.QuaiPatron;
+import modele.Port;
 
 public class QuaiVue extends JFrame
 {
 	private JPanel panelwest = new JPanel();
 	private static JButton ajouter, modifier, supprimer;
 	private static JTable table;
-	private static ProprietairePatron modele = new ProprietairePatron();
+	private static QuaiPatron modele = new QuaiPatron();
 
 	
-	public QuaiVue() {
+	public QuaiVue(Port port) {
 		
 		this.setTitle("Gestion des quais");
 		this.add(panelwest, BorderLayout.WEST);
@@ -52,7 +54,41 @@ public class QuaiVue extends JFrame
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		new ProprietaireControleurVue();
-
+		new QuaiControleurVue(port);
 	}
+
+	//Definir les actions sur les boutons
+		public static void ajouterListener(ActionListener ajouterListener) {
+			ajouter.addActionListener(ajouterListener);
+			
+		}
+		public static void modifierListener(ActionListener modifierListener) {
+			modifier.addActionListener(modifierListener);
+			
+		}
+		public static void supprimerListener(ActionListener supprimerListener) {
+			supprimer.addActionListener(supprimerListener);
+			
+		}
+		
+	//Getters et setters
+	public static JTable getTable() {
+		return table;
+	}
+
+
+	public static void setTable(JTable table) {
+		QuaiVue.table = table;
+	}
+
+
+	public static QuaiPatron getModele() {
+		return modele;
+	}
+
+
+	public static void setModele(QuaiPatron modele) {
+		QuaiVue.modele = modele;
+	}
+	
 }

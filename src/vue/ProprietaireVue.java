@@ -57,7 +57,7 @@ public class ProprietaireVue extends JFrame{
 
 	}
 	
-	//Getters et setters
+	//Definir les actions sur les boutons
 	public static void ajouterListener(ActionListener ajouterListener) {
 		ajouter.addActionListener(ajouterListener);
 		
@@ -71,6 +71,7 @@ public class ProprietaireVue extends JFrame{
 		
 	}
 
+	//Getters et setters
 	public JPanel getPanelwest() {
 		return panelwest;
 	}
