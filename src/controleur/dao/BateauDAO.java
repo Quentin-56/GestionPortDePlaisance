@@ -29,13 +29,13 @@ public class BateauDAO {
 	 * Modifier un bateau
 	 * @param bateau le bateau modifie
 	 */
-	public static void modifierBateau(Bateau bateau){
+	public static void modifierBateau(Bateau bateau){		
 		EntityManager em =SetupEM.getEm();
-
+		
 	    em.getTransaction().begin();
-	        
+	    
 	    em.merge(bateau);
-	        
+	    
 	    em.getTransaction().commit();		
 	}
 	/**
