@@ -50,6 +50,11 @@ public class Quai {
 		this.port = port;
 	}
 	
+	@Override
+	public String toString() {
+		return "Quai "+ code;
+	}
+
 	//Getters et setters
 	public int getCode() {
 		return code;

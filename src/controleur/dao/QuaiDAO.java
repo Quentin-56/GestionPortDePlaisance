@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import modele.Port;
+import modele.Proprietaire;
 import modele.Quai;
 
 public class QuaiDAO {
@@ -55,7 +56,22 @@ public class QuaiDAO {
 		Query requete = SetupEM.getEm().createQuery("from Quai");
 		List<Quai> listeQuai = requete.getResultList();
 		return listeQuai;
-		
+	}
+	
+	/**
+	 * Retourner un quai connaissant son code
+	 * @param code
+	 * @return le quai associe au code
+	 */
+	public static Quai trouverQuaiAvecSonCode(int code){
+		EntityManager em = SetupEM.getEm();
+        em.getTransaction().begin();
+
+        Quai quai = em.find(Quai.class, code);
+
+        em.getTransaction().commit();
+        
+        return quai;
 	}
 
 }
