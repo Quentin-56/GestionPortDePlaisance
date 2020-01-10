@@ -20,13 +20,23 @@ public class EmplacementDAO {
 	 * @param bateau bateau associe a l'emplacement 
 	 * @param quai quai de l'emplacement
 	 */
-	public static void ajouterEmplacement(int code, double taille,Bateau bateau, Quai quai){
-		Emplacement emplacement = new Emplacement(code, taille, bateau, quai);
+	public static void ajouterEmplacement(int code, double taille, Quai quai){
+		Emplacement emplacement = new Emplacement(code, taille, null, quai);
 		EntityManager em = SetupEM.getEm();
 		em.getTransaction().begin();
 		em.persist(emplacement);
 		em.getTransaction().commit();
 		
+	}
+	/**
+	 * Modifier un emplacement
+	 * @param emplacement emplacement modifie
+	 */
+	public static void modifierEmplacement(Emplacement emplacement){
+		EntityManager em = SetupEM.getEm();
+		em.getTransaction().begin();
+		em.merge(emplacement);
+		em.getTransaction().commit();
 	}
 	/**
 	 * Supprimer un emplacement
