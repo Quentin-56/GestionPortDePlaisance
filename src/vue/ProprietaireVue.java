@@ -57,6 +57,7 @@ public class ProprietaireVue extends JFrame{
 
 	}
 	
+	//Getters et setters
 	public static void ajouterListener(ActionListener ajouterListener) {
 		ajouter.addActionListener(ajouterListener);
 		
