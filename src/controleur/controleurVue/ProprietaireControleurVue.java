@@ -16,6 +16,7 @@ public class ProprietaireControleurVue {
 	
 	private JTable table = ProprietaireVue.getTable();
 	private ProprietairePatron modele = ProprietaireVue.getModele();
+	
 	public ProprietaireControleurVue(){
 		ProprietaireVue.ajouterListener(new AjouterListener());
 		ProprietaireVue.modifierListener(new ModifierListener());
@@ -41,8 +42,6 @@ public class ProprietaireControleurVue {
 				modele.fireTableStructureChanged();
 		    }
 		}
-		
-		
 	}
 	
 	class ModifierListener implements ActionListener
