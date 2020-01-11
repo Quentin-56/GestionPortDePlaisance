@@ -103,28 +103,17 @@ public class ApplicationPrincipaleControleurVue
 	}
 	
 	class AjouterBateauListener implements ActionListener
-	{
-		private JTextField nom = new JTextField();
-		private JTextField poids = new JTextField();
-		private JTextField prix = new JTextField();
-		private JTextField type = new JTextField();
-		private JComboBox<TypeDeBateau> categorie= new  JComboBox<TypeDeBateau>(TypeDeBateau.values());
-		private JComboBox<Proprietaire> proprietaire = new JComboBox<Proprietaire>();
-		private JComboBox<Emplacement> emplacement = new JComboBox<Emplacement>();
-		private JLabel typeLabel = new JLabel("Surface voile");
-		
-		
+	{		
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
 			
+			new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
 		}
 	}
 	
 	class SupprimerBateauListener implements ActionListener
 	{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
