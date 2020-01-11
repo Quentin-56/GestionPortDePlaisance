@@ -2,6 +2,7 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.io.File;
 
@@ -9,6 +10,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,6 +26,7 @@ public class EmplacementVue extends JFrame {
 	private JPanel panelwest = new JPanel();
 	private static JButton ajouter, modifier, supprimer;
 	private static JTable table;
+	private static  JLabel titre, intitule;
 	private static EmplacementPatron modele;
 	
 	public EmplacementVue(Quai quai){
@@ -37,10 +40,14 @@ public class EmplacementVue extends JFrame {
 		ajouter = new JButton("Ajouter      ", new ImageIcon("images"+File.separator+"ajouter.png"));
 		modifier = new JButton("Modifier    ", new ImageIcon("images"+File.separator+"modifier.png"));
 		supprimer = new JButton("Supprimer", new ImageIcon("images"+File.separator+"supprimer.png"));
+		titre = new JLabel("Information pratique :");
+		intitule = new JLabel();
 		verticalBox.add(ajouter);
 		verticalBox.add(modifier);
 		verticalBox.add(supprimer);
-		
+		verticalBox.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalBox.add(titre);
+		verticalBox.add(intitule);
 		table = new JTable(modele);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -70,6 +77,10 @@ public class EmplacementVue extends JFrame {
 	public static void supprimerListener(ActionListener supprimerListener) {
 		supprimer.addActionListener(supprimerListener);
 			
+	}
+	//Rafraichissement du texte
+	public static void rafraichissementTexteEmplacement(int occupee, int total){
+		intitule.setText(occupee +" occupée(s) sur "+ total +" dispo.");
 	}
 	
 		//Getters et setters
