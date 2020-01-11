@@ -2,7 +2,6 @@ package controleur.controleurVue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -26,7 +25,6 @@ public class QuaiControleurVue
 		
 		QuaiVue.ajouterListener(new AjouterListener());
 		QuaiVue.supprimerListener(new SupprimerListener());
-		
 	}
 	
 	class AjouterListener implements ActionListener
