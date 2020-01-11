@@ -42,7 +42,7 @@ public class EmplacementControleurVue {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai)<= quai.getNombreEmplacements()){
+			if(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai)< quai.getNombreEmplacements()){
 				 JTextField code = new JTextField();
 				 JTextField taille = new JTextField();
 				 int r =JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
