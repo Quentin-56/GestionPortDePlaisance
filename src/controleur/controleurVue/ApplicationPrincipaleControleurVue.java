@@ -8,11 +8,13 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import controleur.dao.BateauDAO;
 import controleur.dao.PortDAO;
+import controleur.dao.QuaiDAO;
+import controleur.dao.SetupEM;
 import controleur.patronJTable.BateauPatron;
 import modele.Bateau;
 import modele.Emplacement;
@@ -41,6 +43,7 @@ public class ApplicationPrincipaleControleurVue
 		ApplicationPrincipaleVue.gestionProprietairesListener(new GestionProprietairesListener());
 		ApplicationPrincipaleVue.gestionEmplacementsListener(new GestionEmplacementsListener());
 		ApplicationPrincipaleVue.ajouterListener(new AjouterBateauListener());
+		ApplicationPrincipaleVue.supprimerListener(new SupprimerBateauListener());
 		
 		
 		//Parcourir tout les quais du port et ajouter au combobox
@@ -53,25 +56,13 @@ public class ApplicationPrincipaleControleurVue
 		if(comboboxQuai.getSelectedItem() != null)
 		{
 			quai = (Quai) comboboxQuai.getSelectedItem();
-			afficherBateauxDuQuai(quai);
+			modele.refresh();
 		}
-		
 	}
 	
-	public void afficherBateauxDuQuai(Quai quai)
+	public void afficherBateauxDuQuaiCourant()
 	{
-		List<Bateau> bateaux = new ArrayList<>();
-		for(Emplacement emplacement : quai.getListeEmplacements())
-		{
-			//Si l'emplacement possede un bateau
-			if(emplacement.getBateau() != null)
-			{
-				bateaux.add(emplacement.getBateau());
-			}
-		}
 		
-		modele.setListesBateaux(bateaux);
-		modele.fireTableDataChanged();
 	}
 	
 	class ComboboxListener implements ActionListener
@@ -80,7 +71,7 @@ public class ApplicationPrincipaleControleurVue
 		public void actionPerformed(ActionEvent e) {
 			
 			quai = (Quai) comboboxQuai.getSelectedItem();
-			afficherBateauxDuQuai(quai);
+			modele.refresh();
 		}
 	}
 	
@@ -112,23 +103,29 @@ public class ApplicationPrincipaleControleurVue
 	}
 	
 	class AjouterBateauListener implements ActionListener
-	{
-		private JTextField nom = new JTextField();
-		private JTextField poids = new JTextField();
-		private JTextField prix = new JTextField();
-		private JTextField type = new JTextField();
-		private JComboBox<TypeDeBateau> categorie= new  JComboBox<TypeDeBateau>(TypeDeBateau.values());
-		private JComboBox<Proprietaire> proprietaire = new JComboBox<Proprietaire>();
-		private JComboBox<Emplacement> emplacement = new JComboBox<Emplacement>();
-		private JLabel typeLabel = new JLabel("Surface voile");
-		
-		
+	{		
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
 			
+			new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
 		}
+	}
+	
+	class SupprimerBateauListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			int ligneSelectionnee = table.getSelectedRow();
+			
+			if(ligneSelectionnee != -1)
+			{
+				Bateau bateau = modele.retournerBateau(ligneSelectionnee);
+				BateauDAO.supprimerBateau(bateau);
+				modele.refresh();
+			}
+		}	
 	}
 }
 

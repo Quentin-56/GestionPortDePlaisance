@@ -5,7 +5,11 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import controleur.controleurVue.ApplicationPrincipaleControleurVue;
+import controleur.dao.QuaiDAO;
 import modele.Bateau;
+import modele.Quai;
+import vue.ApplicationPrincipaleVue;
 
 public class BateauPatron extends AbstractTableModel{
 	
@@ -22,7 +26,22 @@ public class BateauPatron extends AbstractTableModel{
 	
 		return listesBateaux.size();
 	}
+	
+	public Bateau retournerBateau(int rowIndex) {
+		return listesBateaux.get(rowIndex);
+	}
 
+	public void refresh()
+	{
+		Quai quai = (Quai) ApplicationPrincipaleVue.getComboboxQuais().getSelectedItem();
+		if(quai != null)
+		{
+			List<Bateau> bateaux = QuaiDAO.retournerBateauDuQuai(quai);
+			listesBateaux = bateaux;
+			fireTableDataChanged();
+		}
+	}
+	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch(columnIndex)
