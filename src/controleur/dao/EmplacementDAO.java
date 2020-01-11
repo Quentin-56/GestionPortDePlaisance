@@ -61,5 +61,20 @@ public class EmplacementDAO {
 		return listeEmplacement;		
 	}
 	
+	/**
+	 * Retourner un emplacement connaissant son code
+	 * @param code
+	 * @return l'emplacement associe au code
+	 */
+	public static Emplacement trouverEmplacementAvecSonCode(int code){
+		EntityManager em = SetupEM.getEm();
+        em.getTransaction().begin();
+
+        Emplacement emplacement = em.find(Emplacement.class, code);
+
+        em.getTransaction().commit();
+        
+        return emplacement;
+	}
 
 }

@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "idBateau")
+//@PrimaryKeyJoinColumn(name = "idBateau")
 public class Voilier extends Bateau{
 	
 	private double surfaceTotaleVoile;

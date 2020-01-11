@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+
 @Entity
 public class Emplacement {
 	
@@ -20,7 +21,6 @@ public class Emplacement {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Quai quai;
-	
 	/**
 	 * Constructeur de confort
 	 * @param code
@@ -77,9 +77,4 @@ public class Emplacement {
 	public void setQuai(Quai quai) {
 		this.quai = quai;
 	}
-	
-	
-	
-	
-
 }

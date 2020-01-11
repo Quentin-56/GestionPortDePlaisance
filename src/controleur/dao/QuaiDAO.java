@@ -44,6 +44,10 @@ public class QuaiDAO {
 	public static void supprimerQuai(Quai quai){
 		EntityManager em = SetupEM.getEm();
 		em.getTransaction().begin();
+		
+		em.merge(quai);
+		quai = em.find(quai.getClass(), quai.getCode());
+		
 		em.remove(quai);
 		em.getTransaction().commit();
 		
