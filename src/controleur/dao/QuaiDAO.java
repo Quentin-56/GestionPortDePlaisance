@@ -77,5 +77,18 @@ public class QuaiDAO {
         
         return quai;
 	}
+	/**
+	 * Permet de savoir si un quai existe déjà dans la base
+	 * @param code code du quai
+	 * @return Vrai il existe Faux sinon
+	 */
+	public static Boolean estUnQuai(int code){
+		Query requete = SetupEM.getEm().createQuery("from Quai q where q.code = ?1");
+		requete.setParameter(1, code);
+		if(requete.getResultList().isEmpty()){
+			return false;
+		}
+		return true;
+	}
 
 }

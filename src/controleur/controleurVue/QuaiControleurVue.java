@@ -2,6 +2,7 @@ package controleur.controleurVue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -21,7 +22,7 @@ public class QuaiControleurVue
 	
 	public QuaiControleurVue(Port port)
 	{
-		modele.setListesQuais(port.getListeDeQuais());
+		modele.setListesQuais(QuaiDAO.recupererTousLesQuaisDuPort());
 		
 		QuaiVue.ajouterListener(new AjouterListener());
 		QuaiVue.supprimerListener(new SupprimerListener());
@@ -34,28 +35,40 @@ public class QuaiControleurVue
 		public void actionPerformed(ActionEvent arg0) {
 		    JTextField codeTF = new JTextField();
 		    JTextField nbEmplacementsTF = new JTextField();
-		    JOptionPane.showOptionDialog(null, new Object[] {"Code :", codeTF, "Nombre d'emplacements :", nbEmplacementsTF},
+		    int r =JOptionPane.showOptionDialog(null, new Object[] {"Code :", codeTF, "Nombre d'emplacements :", nbEmplacementsTF},
 		      "Quais",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
-		    
-		    if(codeTF.getText().isEmpty() || nbEmplacementsTF.getText().isEmpty()){
-		    	JOptionPane d = new JOptionPane();
-		    	d.showMessageDialog( null, "Champ(s) manquant(s)", "Erreur ajout quai", JOptionPane.ERROR_MESSAGE);
-		    }else
-		    {
-		    	//MANQUE A VERIFIER QUE SAISIE VALIDE ET CODE SOIT UNIQUE 
-		    	//Convertir les saisies en un entier
-		    	int code = Integer.parseInt(codeTF.getText());
-		    	int nombreEmplacements = Integer.parseInt(nbEmplacementsTF.getText());
-		    	
-		    	//Ajout du quai dans la BDD
-		    	QuaiDAO.ajouterQuai(code, nombreEmplacements, PortDAO.retournerPort());
-		    	Quai quai = QuaiDAO.trouverQuaiAvecSonCode(code);
-		    	
-		    	//Ajout du quai dans la vue
-		    	modele.ajouterQuai(quai);
-		    	//Ajout du quai dans le combobox
-		    	ApplicationPrincipaleVue.getComboboxQuais().addItem(quai);
+		    if(r==JOptionPane.YES_OPTION){
+		    	if(codeTF.getText().isEmpty() || nbEmplacementsTF.getText().isEmpty()){
+			    	JOptionPane d = new JOptionPane();
+			    	d.showMessageDialog( null, "Champ(s) manquant(s)", "Erreur ajout quai", JOptionPane.ERROR_MESSAGE);
+			    }else
+			    {
+			    	try{
+			    		//Convertir les saisies en un entier
+				    	int code = Integer.parseInt(codeTF.getText());
+				    	int nombreEmplacements = Integer.parseInt(nbEmplacementsTF.getText());
+				    	if(QuaiDAO.estUnQuai(code)== false){
+				    		//Ajout du quai dans la BDD
+					    	QuaiDAO.ajouterQuai(code, nombreEmplacements, PortDAO.retournerPort());
+					    	Quai quai = QuaiDAO.trouverQuaiAvecSonCode(code);
+					    	//Ajout du quai dans la vue
+					    	modele.ajouterQuai(quai);
+					    	//Ajout du quai dans le combobox
+					    	ApplicationPrincipaleVue.getComboboxQuais().addItem(quai);
+				    	}else{
+				    		JOptionPane d = new JOptionPane();
+						     d.showMessageDialog( null, "Le code quai doit être unique", "Erreur ajout quai", JOptionPane.ERROR_MESSAGE); 
+				    	}
+				    	
+			    	}catch(NumberFormatException e){
+			    		JOptionPane d = new JOptionPane();
+					    d.showMessageDialog( null, "Des nombres sont attendus", "Erreur ajout quai", JOptionPane.ERROR_MESSAGE);
+			    	}
+			    	
+			    }
 		    }
+		    
+		    
 		}
 	}
 	
@@ -75,6 +88,9 @@ public class QuaiControleurVue
 				modele.fireTableDataChanged();
 				
 				ApplicationPrincipaleVue.getComboboxQuais().removeItem(quai);
+			}else{
+				JOptionPane d = new JOptionPane();
+		    	d.showMessageDialog( null, "Sélectionner un quai", "Erreur supprimer quai", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

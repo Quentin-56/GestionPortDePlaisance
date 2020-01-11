@@ -71,9 +71,7 @@ public class EmplacementControleurVue {
 					    
 					 }    
 				 }
-				 
-				 
-				    
+    
 			}else{
 				JOptionPane d = new JOptionPane();
 		    	d.showMessageDialog( null, "Nombre maximal d'emplacement atteind pour ce quai", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);

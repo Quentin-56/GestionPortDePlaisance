@@ -87,7 +87,7 @@ public class EmplacementDAO {
         return emplacement;
 	}
 	/**
-	 * Permet de savoir si un emplacement existe déja dans la base
+	 * Permet de savoir si un emplacement existe déjà dans la base
 	 * @param code code de l'emplacement
 	 * @return Vrai il existe Faux sinon
 	 */
