@@ -80,7 +80,7 @@ public class EmplacementVue extends JFrame {
 	}
 	//Rafraichissement du texte
 	public static void rafraichissementTexteEmplacement(int occupee, int total){
-		intitule.setText(occupee +" occupée(s) sur "+ total +" dispo.");
+		intitule.setText(occupee +" crée(s) sur "+ total +" dispo.");
 	}
 	
 		//Getters et setters
