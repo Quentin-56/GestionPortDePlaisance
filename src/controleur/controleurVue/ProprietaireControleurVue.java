@@ -31,16 +31,19 @@ public class ProprietaireControleurVue {
 		public void actionPerformed(ActionEvent arg0) {
 		    JTextField nom = new JTextField();
 		    JTextField adresse = new JTextField();
-		    JOptionPane.showOptionDialog(null, new Object[] {"Nom :", nom, "Adresse :", adresse},
+		    int r =JOptionPane.showOptionDialog(null, new Object[] {"Nom :", nom, "Adresse :", adresse},
 		      "Proprietaire",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
-		    if(nom.getText().equals("") || adresse.getText().equals("")){
-		    	JOptionPane d = new JOptionPane();
-		    	d.showMessageDialog( null, "Nom ou Adresse manquant", "Erreur ajout proprietaire", JOptionPane.ERROR_MESSAGE);
-		    }else{
-		    	ProprietaireDAO.ajouterProprietaire(nom.getText(), adresse.getText());
-		    	modele.setListeProprietaire(ProprietaireDAO.recupererTousLesProprietaires());
-				modele.fireTableStructureChanged();
+		    if(r ==JOptionPane.YES_OPTION){
+		    	if(nom.getText().equals("") || adresse.getText().equals("")){
+			    	JOptionPane d = new JOptionPane();
+			    	d.showMessageDialog( null, "Nom ou Adresse manquant", "Erreur ajout proprietaire", JOptionPane.ERROR_MESSAGE);
+			    }else{
+			    	ProprietaireDAO.ajouterProprietaire(nom.getText(), adresse.getText());
+			    	modele.setListeProprietaire(ProprietaireDAO.recupererTousLesProprietaires());
+					modele.fireTableStructureChanged();
+			    }
 		    }
+		    
 		}
 	}
 	
@@ -55,18 +58,24 @@ public class ProprietaireControleurVue {
 				Proprietaire proprio = modele.getListeProprietaire().get(table.getSelectedRow());
 				JTextField nom = new JTextField(proprio.getNom());
 			    JTextField adresse = new JTextField(proprio.getAdresse());
-			    JOptionPane.showOptionDialog(null, new Object[] {"Nom :", nom, "Adresse :", adresse},
+			    int r=JOptionPane.showOptionDialog(null, new Object[] {"Nom :", nom, "Adresse :", adresse},
 			      "Proprietaire",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
-			    if(nom.getText().equals("") || adresse.getText().equals("")){
-			    	JOptionPane d = new JOptionPane();
-			    	d.showMessageDialog( null, "Nom ou Adresse manquant", "Erreur ajout proprietaire", JOptionPane.ERROR_MESSAGE);
-			    }else{
-			    	proprio.setNom(nom.getText());
-			    	proprio.setAdresse(adresse.getText());
-			    	ProprietaireDAO.modifierProprietaire(proprio);
-			    	modele.setListeProprietaire(ProprietaireDAO.recupererTousLesProprietaires());
-					modele.fireTableStructureChanged();
+			    if(r==JOptionPane.YES_OPTION){
+			    	if(nom.getText().equals("") || adresse.getText().equals("")){
+				    	JOptionPane d = new JOptionPane();
+				    	d.showMessageDialog( null, "Nom ou Adresse manquant", "Erreur modifier proprietaire", JOptionPane.ERROR_MESSAGE);
+				    }else{
+				    	proprio.setNom(nom.getText());
+				    	proprio.setAdresse(adresse.getText());
+				    	ProprietaireDAO.modifierProprietaire(proprio);
+				    	modele.setListeProprietaire(ProprietaireDAO.recupererTousLesProprietaires());
+						modele.fireTableStructureChanged();
+				    }
 			    }
+			    
+			}else{
+				JOptionPane d = new JOptionPane();
+		    	d.showMessageDialog( null, "Selectionner un propriétaire", "Erreur modifier propriétaire", JOptionPane.ERROR_MESSAGE);
 			}
 			}
 			
@@ -85,6 +94,9 @@ public class ProprietaireControleurVue {
 				ProprietaireDAO.supprimerProprietaire(proprio);
 				modele.setListeProprietaire(ProprietaireDAO.recupererTousLesProprietaires());
 				modele.fireTableStructureChanged();
+			}else{
+				JOptionPane d = new JOptionPane();
+		    	d.showMessageDialog( null, "Selectionner un propriétaire", "Erreur supprimer propriétaire", JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}
