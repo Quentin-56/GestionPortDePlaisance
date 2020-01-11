@@ -32,7 +32,10 @@ public class AjouterBateauControleurVue {
 	private JComboBox<TypeDeBateau> type;
 
 	
-	public AjouterBateauControleurVue(JTextField nom,JTextField poids,JTextField typeTF,JComboBox<Proprietaire> proprietaire,JComboBox<Emplacement> emplacement,JLabel typeLabel,AjouterBateauVue maFenetre,JPanel centerPanel,JComboBox<TypeDeBateau> type) {
+	public AjouterBateauControleurVue(JTextField nom,JTextField poids,JTextField typeTF,JComboBox<Proprietaire> proprietaire,
+			JComboBox<Emplacement> emplacement,JLabel typeLabel,AjouterBateauVue maFenetre,JPanel centerPanel,
+			JComboBox<TypeDeBateau> type) {
+		
 		AjouterBateauVue.comboboxListener(new ComboboxListener());
 		AjouterBateauVue.annulerListener(new AnnulerBateauListener());
 		AjouterBateauVue.validerListener(new ValiderBateauListener());
@@ -96,6 +99,7 @@ public class AjouterBateauControleurVue {
 			}
 			
 			maFenetre.dispose();
+			ApplicationPrincipaleVue.getModele().refresh();
 		}
 	}
 	

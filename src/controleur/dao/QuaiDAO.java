@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import modele.Bateau;
 import modele.Port;
-import modele.Proprietaire;
 import modele.Quai;
 
 public class QuaiDAO {
@@ -89,6 +89,19 @@ public class QuaiDAO {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Permet de retourner les bateaux appartenant a un quai
+	 * @param quai
+	 * @return
+	 */
+	public static List<Bateau> retournerBateauDuQuai(Quai quai)
+	{
+		Query requete = SetupEM.getEm().createQuery("FROM Bateau b1 WHERE b1.idBateau IN (SELECT b2.idBateau FROM Bateau b2 INNER JOIN Emplacement e ON b2.emplacement = e.bateau WHERE e.quai = ?1 )");
+		requete.setParameter(1, quai);
+		List<Bateau> listeid = requete.getResultList();
+		return listeid;
 	}
 
 }

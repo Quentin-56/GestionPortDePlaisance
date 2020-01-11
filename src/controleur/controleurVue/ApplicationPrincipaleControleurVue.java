@@ -8,11 +8,13 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import controleur.dao.BateauDAO;
 import controleur.dao.PortDAO;
+import controleur.dao.QuaiDAO;
+import controleur.dao.SetupEM;
 import controleur.patronJTable.BateauPatron;
 import modele.Bateau;
 import modele.Emplacement;
@@ -41,6 +43,7 @@ public class ApplicationPrincipaleControleurVue
 		ApplicationPrincipaleVue.gestionProprietairesListener(new GestionProprietairesListener());
 		ApplicationPrincipaleVue.gestionEmplacementsListener(new GestionEmplacementsListener());
 		ApplicationPrincipaleVue.ajouterListener(new AjouterBateauListener());
+		ApplicationPrincipaleVue.supprimerListener(new SupprimerBateauListener());
 		
 		
 		//Parcourir tout les quais du port et ajouter au combobox
@@ -53,25 +56,13 @@ public class ApplicationPrincipaleControleurVue
 		if(comboboxQuai.getSelectedItem() != null)
 		{
 			quai = (Quai) comboboxQuai.getSelectedItem();
-			afficherBateauxDuQuai(quai);
+			modele.refresh();
 		}
-		
 	}
 	
-	public void afficherBateauxDuQuai(Quai quai)
+	public void afficherBateauxDuQuaiCourant()
 	{
-		List<Bateau> bateaux = new ArrayList<>();
-		for(Emplacement emplacement : quai.getListeEmplacements())
-		{
-			//Si l'emplacement possede un bateau
-			if(emplacement.getBateau() != null)
-			{
-				bateaux.add(emplacement.getBateau());
-			}
-		}
 		
-		modele.setListesBateaux(bateaux);
-		modele.fireTableDataChanged();
 	}
 	
 	class ComboboxListener implements ActionListener
@@ -80,7 +71,7 @@ public class ApplicationPrincipaleControleurVue
 		public void actionPerformed(ActionEvent e) {
 			
 			quai = (Quai) comboboxQuai.getSelectedItem();
-			afficherBateauxDuQuai(quai);
+			modele.refresh();
 		}
 	}
 	
@@ -129,6 +120,23 @@ public class ApplicationPrincipaleControleurVue
 			new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
 			
 		}
+	}
+	
+	class SupprimerBateauListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			int ligneSelectionnee = table.getSelectedRow();
+			
+			if(ligneSelectionnee != -1)
+			{
+				Bateau bateau = modele.retournerBateau(ligneSelectionnee);
+				BateauDAO.supprimerBateau(bateau);
+				modele.refresh();
+			}
+		}	
 	}
 }
 
