@@ -25,12 +25,12 @@ public class QuaiControleurVue
 		modele.setListesQuais(port.getListeDeQuais());
 		
 		QuaiVue.ajouterListener(new AjouterListener());
+		QuaiVue.supprimerListener(new SupprimerListener());
 		
 	}
 	
 	class AjouterListener implements ActionListener
 	{
-
 		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -58,6 +58,26 @@ public class QuaiControleurVue
 		    	//Ajout du quai dans le combobox
 		    	ApplicationPrincipaleVue.getComboboxQuais().addItem(quai);
 		    }
+		}
+	}
+	
+	class SupprimerListener implements ActionListener
+	{
+		@SuppressWarnings("static-access")
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			int ligneSelectionnee = table.getSelectedRow();
+			
+			if(ligneSelectionnee != -1)
+			{
+				Quai quai = modele.getListesQuais().get(ligneSelectionnee);
+				QuaiDAO.supprimerQuai(quai);
+				modele.getListesQuais().remove(ligneSelectionnee);
+				modele.fireTableDataChanged();
+				
+				ApplicationPrincipaleVue.getComboboxQuais().removeItem(quai);
+			}
 		}
 	}
 }

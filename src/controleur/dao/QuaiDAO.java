@@ -77,5 +77,4 @@ public class QuaiDAO {
         
         return quai;
 	}
-
 }

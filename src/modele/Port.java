@@ -18,7 +18,7 @@ public class Port {
 	
 	@OneToMany(
 			mappedBy = "port",
-			cascade = CascadeType.ALL
+			orphanRemoval = true
 	)
 	private List<Quai> listeDeQuais;
 	

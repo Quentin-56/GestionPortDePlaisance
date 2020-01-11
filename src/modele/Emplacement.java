@@ -16,7 +16,7 @@ public class Emplacement {
 	
 	private double taille;
 	
-	@OneToOne(mappedBy = "emplacement", cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(mappedBy = "emplacement",fetch = FetchType.LAZY, orphanRemoval = true)
 	private Bateau bateau;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -43,6 +43,13 @@ public class Emplacement {
 		this.bateau = null;
 		this.quai = null;
 		this.code = 0;
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Emplacement [code=" + code + ", taille=" + taille + "]";
 	}
 
 	//Getters et setters

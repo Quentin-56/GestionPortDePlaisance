@@ -44,7 +44,7 @@ public class EmplacementControleurVue {
 		    JTextField taille = new JTextField();
 		    JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
 		      "Emplacement",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
-		    if(code.getText().isBlank()|| taille.getText().isBlank()){
+		    if(code.getText().isEmpty()|| taille.getText().isEmpty()){
 		    	JOptionPane d = new JOptionPane();
 		    	d.showMessageDialog( null, "Code ou Taille manquant", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
 		    }else{
@@ -73,7 +73,7 @@ public class EmplacementControleurVue {
 				    JTextField taille = new JTextField(emplacement.getTaille()+"");
 				    JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
 				      "Emplacement",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
-				    if(code.getText().equals("") || taille.getText().equals("")){
+				    if(code.getText().isEmpty()|| taille.getText().isEmpty()){
 				    	JOptionPane d = new JOptionPane();
 				    	d.showMessageDialog( null, "Code ou Taille manquant", "Erreur modifier emplacement", JOptionPane.ERROR_MESSAGE);
 				    }else{
@@ -85,10 +85,8 @@ public class EmplacementControleurVue {
 				    	modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
 						modele.fireTableStructureChanged();
 				    }
+				}
 			}
-			}
-			
-		
 	}
 	
 	class SupprimerListener implements ActionListener
@@ -103,12 +101,11 @@ public class EmplacementControleurVue {
 			if(table.getSelectedRow() != -1)
 			{
 				Emplacement  emplacement = modele.getListeEmplacement().get(table.getSelectedRow());
+				System.out.println(emplacement);
 				EmplacementDAO.supprimerEmplacement(emplacement);
 				modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
 				modele.fireTableStructureChanged();
-			}
-			
+			}	
 		}
-		
 	}
 }
