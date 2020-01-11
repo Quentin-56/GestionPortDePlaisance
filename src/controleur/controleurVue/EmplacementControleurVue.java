@@ -45,18 +45,28 @@ public class EmplacementControleurVue {
 			if(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai)<= quai.getNombreEmplacements()){
 				 JTextField code = new JTextField();
 				 JTextField taille = new JTextField();
-				 JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
+				 int r =JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
 					      "Emplacement",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null);
-				 if(code.getText().isEmpty()|| taille.getText().isEmpty()){
-				    	JOptionPane d = new JOptionPane();
-				    	d.showMessageDialog( null, "Code ou Taille manquant", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
-				 }else{
-				    int iCode = Integer.parseInt(code.getText());
-				    Double dTaille = Double.parseDouble(taille.getText());
-				    EmplacementDAO.ajouterEmplacement(iCode, dTaille, quai);
-				    modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
-					modele.fireTableStructureChanged();
-				 }    
+				 if(r == JOptionPane.YES_OPTION){
+					 if(code.getText().isEmpty()|| taille.getText().isEmpty()){
+					    	JOptionPane d = new JOptionPane();
+					    	d.showMessageDialog( null, "Code ou Taille manquant", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+					 }else{
+						 try{
+							 int iCode = Integer.parseInt(code.getText());
+							 Double dTaille = Double.parseDouble(taille.getText());
+							 EmplacementDAO.ajouterEmplacement(iCode, dTaille, quai);
+							 modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
+							 modele.fireTableStructureChanged();
+						 }catch(NumberFormatException e){
+							 JOptionPane d = new JOptionPane();
+						    	d.showMessageDialog( null, "Des nombres sont attendus", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+						 }
+					    
+					 }    
+				 }
+				 
+				 
 				    
 			}else{
 				JOptionPane d = new JOptionPane();
