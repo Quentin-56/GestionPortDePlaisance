@@ -60,7 +60,7 @@ public class EmplacementControleurVue {
 							 modele.fireTableStructureChanged();
 						 }catch(NumberFormatException e){
 							 JOptionPane d = new JOptionPane();
-						    	d.showMessageDialog( null, "Des nombres sont attendus", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+						     d.showMessageDialog( null, "Des nombres sont attendus", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
 						 }
 					    
 					 }    
@@ -89,19 +89,34 @@ public class EmplacementControleurVue {
 			{
 				Emplacement emplacement = modele.getListeEmplacement().get(table.getSelectedRow());
 				JTextField taille = new JTextField(emplacement.getTaille()+"");
-				JOptionPane.showOptionDialog(null, new Object[] { "Taille :", taille},
+				int r =JOptionPane.showOptionDialog(null, new Object[] { "Taille :", taille},
 				      "Emplacement",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
-				if( taille.getText().isEmpty()){
-				    JOptionPane d = new JOptionPane();
-				    d.showMessageDialog( null, "Taille manquant", "Erreur modifier emplacement", JOptionPane.ERROR_MESSAGE);
-				 }else{
-				    Double dTaille = Double.parseDouble(taille.getText());
-				    emplacement.setTaille(dTaille);
-				    EmplacementDAO.modifierEmplacement(emplacement);
-				    modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
-					modele.fireTableStructureChanged();
-				    }
+				if(r == JOptionPane.YES_OPTION){
+					if( taille.getText().isEmpty()){
+					    JOptionPane d = new JOptionPane();
+					    d.showMessageDialog( null, "Taille manquant", "Erreur modifier emplacement", JOptionPane.ERROR_MESSAGE);
+					 }else{
+						 try{
+							 Double dTaille = Double.parseDouble(taille.getText());
+							 emplacement.setTaille(dTaille);
+							 EmplacementDAO.modifierEmplacement(emplacement);
+							 modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
+						     modele.fireTableStructureChanged();
+							 
+						 }catch(NumberFormatException e){
+							 JOptionPane d = new JOptionPane();
+						     d.showMessageDialog( null, "Des nombres sont attendus", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+						 }
+					   
+					    }
+					}
+				}else{
+					JOptionPane d = new JOptionPane();
+			    	d.showMessageDialog( null, "Séléctionner un emplacement", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
 				}
+				
+				
+				
 			}
 	}
 	
