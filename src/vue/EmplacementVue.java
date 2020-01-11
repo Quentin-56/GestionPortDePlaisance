@@ -3,8 +3,10 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,9 +34,9 @@ public class EmplacementVue extends JFrame {
 		// Creation boite verticale pour inserer les composants du panel de gauche
 		Box verticalBox = Box.createVerticalBox();
 		panelwest.add(verticalBox);
-		ajouter = new JButton("Ajouter");
-		modifier = new JButton("Modifier");
-		supprimer = new JButton("Supprimer");
+		ajouter = new JButton("Ajouter      ", new ImageIcon("images"+File.separator+"ajouter.png"));
+		modifier = new JButton("Modifier    ", new ImageIcon("images"+File.separator+"modifier.png"));
+		supprimer = new JButton("Supprimer", new ImageIcon("images"+File.separator+"supprimer.png"));
 		verticalBox.add(ajouter);
 		verticalBox.add(modifier);
 		verticalBox.add(supprimer);

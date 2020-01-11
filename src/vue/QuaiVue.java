@@ -3,8 +3,10 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,7 +22,7 @@ import modele.Port;
 public class QuaiVue extends JFrame
 {
 	private JPanel panelwest = new JPanel();
-	private static JButton ajouter, modifier, supprimer;
+	private static JButton ajouter, supprimer;
 	private static JTable table;
 	private static QuaiPatron modele = new QuaiPatron();
 
@@ -32,13 +34,11 @@ public class QuaiVue extends JFrame
 		// Creation boite verticale pour inserer les composants du panel de gauche
 		Box verticalBox = Box.createVerticalBox();
 		panelwest.add(verticalBox);
-		ajouter = new JButton("Ajouter");
-		modifier = new JButton("Modifier");
-		supprimer = new JButton("Supprimer");
+		ajouter = new JButton("Ajouter      ", new ImageIcon("images"+File.separator+"ajouter.png"));
+		supprimer = new JButton("Supprimer", new ImageIcon("images"+File.separator+"supprimer.png"));
 		verticalBox.add(ajouter);
-		verticalBox.add(modifier);
 		verticalBox.add(supprimer);
-		
+
 		table = new JTable(modele);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -60,10 +60,6 @@ public class QuaiVue extends JFrame
 	//Definir les actions sur les boutons
 		public static void ajouterListener(ActionListener ajouterListener) {
 			ajouter.addActionListener(ajouterListener);
-			
-		}
-		public static void modifierListener(ActionListener modifierListener) {
-			modifier.addActionListener(modifierListener);
 			
 		}
 		public static void supprimerListener(ActionListener supprimerListener) {
