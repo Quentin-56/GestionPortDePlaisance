@@ -17,6 +17,7 @@ import controleur.controleurVue.ProprietaireControleurVue.ModifierListener;
 import controleur.controleurVue.ProprietaireControleurVue.SupprimerListener;
 import controleur.dao.EmplacementDAO;
 import controleur.dao.ProprietaireDAO;
+import controleur.dao.QuaiDAO;
 import controleur.patronJTable.EmplacementPatron;
 
 
@@ -40,20 +41,28 @@ public class EmplacementControleurVue {
 		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-		    JTextField code = new JTextField();
-		    JTextField taille = new JTextField();
-		    JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
-		      "Emplacement",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
-		    if(code.getText().isEmpty()|| taille.getText().isEmpty()){
-		    	JOptionPane d = new JOptionPane();
-		    	d.showMessageDialog( null, "Code ou Taille manquant", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
-		    }else{
-		    	int iCode = Integer.parseInt(code.getText());
-		    	Double dTaille = Double.parseDouble(taille.getText());
-		    	EmplacementDAO.ajouterEmplacement(iCode, dTaille, quai);
-		    	modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
-				modele.fireTableStructureChanged();
-		    }
+			
+			if(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai)<= quai.getNombreEmplacements()){
+				 JTextField code = new JTextField();
+				 JTextField taille = new JTextField();
+				 JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
+					      "Emplacement",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null);
+				 if(code.getText().isEmpty()|| taille.getText().isEmpty()){
+				    	JOptionPane d = new JOptionPane();
+				    	d.showMessageDialog( null, "Code ou Taille manquant", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+				 }else{
+				    int iCode = Integer.parseInt(code.getText());
+				    Double dTaille = Double.parseDouble(taille.getText());
+				    EmplacementDAO.ajouterEmplacement(iCode, dTaille, quai);
+				    modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
+					modele.fireTableStructureChanged();
+				 }    
+				    
+			}else{
+				JOptionPane d = new JOptionPane();
+		    	d.showMessageDialog( null, "Nombre maximal d'emplacement atteind pour ce quai", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+			}
+		   
 		}
 	}
 	

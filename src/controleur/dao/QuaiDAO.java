@@ -77,16 +77,5 @@ public class QuaiDAO {
         
         return quai;
 	}
-	/**
-	 * Retourne le nombre d'emplacement d'un quai
-	 * @param code
-	 * @return
-	 */
-	public static int nombreEmplacementsQuai(int code){
-		EntityManager em = SetupEM.getEm();
-        em.getTransaction().begin();
-        Quai quai = em.find(Quai.class, code);
-        em.getTransaction().commit();
-        return quai.getNombreEmplacements();
-	}
+
 }
