@@ -49,7 +49,7 @@ public class Emplacement {
 
 	@Override
 	public String toString() {
-		return "Emplacement [code=" + code + ", taille=" + taille + "]";
+		return "Numero "+ code;
 	}
 
 	//Getters et setters
