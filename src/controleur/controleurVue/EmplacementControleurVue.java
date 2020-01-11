@@ -118,7 +118,7 @@ public class EmplacementControleurVue {
 					}
 				}else{
 					JOptionPane d = new JOptionPane();
-			    	d.showMessageDialog( null, "Séléctionner un emplacement", "Erreur modifier emplacement", JOptionPane.ERROR_MESSAGE);
+			    	d.showMessageDialog( null, "Sélectionner un emplacement", "Erreur modifier emplacement", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				
@@ -144,7 +144,7 @@ public class EmplacementControleurVue {
 				modele.fireTableStructureChanged();
 			}else{
 				JOptionPane d = new JOptionPane();
-		    	d.showMessageDialog( null, "Séléctionner un emplacement", "Erreur supprimer emplacement", JOptionPane.ERROR_MESSAGE);
+		    	d.showMessageDialog( null, "Sélectionner un emplacement", "Erreur supprimer emplacement", JOptionPane.ERROR_MESSAGE);
 			}	
 		}
 	}
