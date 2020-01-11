@@ -55,9 +55,15 @@ public class EmplacementControleurVue {
 						 try{
 							 int iCode = Integer.parseInt(code.getText());
 							 Double dTaille = Double.parseDouble(taille.getText());
-							 EmplacementDAO.ajouterEmplacement(iCode, dTaille, quai);
-							 modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
-							 modele.fireTableStructureChanged();
+							 if(EmplacementDAO.estUnEmplacement(iCode) == false){
+								 EmplacementDAO.ajouterEmplacement(iCode, dTaille, quai);
+								 modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
+								 modele.fireTableStructureChanged();
+							 }else{
+								 JOptionPane d = new JOptionPane();
+							     d.showMessageDialog( null, "Le code emplacement doit être unique", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE); 
+							 }
+							 
 						 }catch(NumberFormatException e){
 							 JOptionPane d = new JOptionPane();
 						     d.showMessageDialog( null, "Des nombres sont attendus", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
@@ -105,14 +111,14 @@ public class EmplacementControleurVue {
 							 
 						 }catch(NumberFormatException e){
 							 JOptionPane d = new JOptionPane();
-						     d.showMessageDialog( null, "Des nombres sont attendus", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+						     d.showMessageDialog( null, "Des nombres sont attendus", "Erreur modifier emplacement", JOptionPane.ERROR_MESSAGE);
 						 }
 					   
 					    }
 					}
 				}else{
 					JOptionPane d = new JOptionPane();
-			    	d.showMessageDialog( null, "Séléctionner un emplacement", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+			    	d.showMessageDialog( null, "Séléctionner un emplacement", "Erreur modifier emplacement", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				
@@ -138,7 +144,7 @@ public class EmplacementControleurVue {
 				modele.fireTableStructureChanged();
 			}else{
 				JOptionPane d = new JOptionPane();
-		    	d.showMessageDialog( null, "Séléctionner un emplacement", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
+		    	d.showMessageDialog( null, "Séléctionner un emplacement", "Erreur supprimer emplacement", JOptionPane.ERROR_MESSAGE);
 			}	
 		}
 	}

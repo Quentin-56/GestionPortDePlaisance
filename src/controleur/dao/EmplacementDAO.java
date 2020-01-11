@@ -86,5 +86,19 @@ public class EmplacementDAO {
         
         return emplacement;
 	}
+	/**
+	 * Permet de savoir si un emplacement existe déja dans la base
+	 * @param code code de l'emplacement
+	 * @return Vrai il existe Faux sinon
+	 */
+	public static Boolean estUnEmplacement(int code){
+		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.code = ?1");
+		requete.setParameter(1, code);
+		if(requete.getResultList().isEmpty()){
+			return false;
+		}
+		return true;
+		
+	}
 
 }
