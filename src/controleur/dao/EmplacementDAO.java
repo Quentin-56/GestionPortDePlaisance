@@ -60,6 +60,16 @@ public class EmplacementDAO {
 		List<Emplacement> listeEmplacement = requete.getResultList();
 		return listeEmplacement;		
 	}
+	/**
+	 * Recuperer le nombre d'emplacement occupé dans un quai
+	 * @param quai quai selectione
+	 * @return liste d'emplacement
+	 */
+	public static int recupererNombreEmplacementOccupeDansQuai(Quai quai){
+		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.quai = ?1");
+		requete.setParameter(1, quai);
+		return requete.getResultList().size();
+	}
 	
 	/**
 	 * Retourner un emplacement connaissant son code
