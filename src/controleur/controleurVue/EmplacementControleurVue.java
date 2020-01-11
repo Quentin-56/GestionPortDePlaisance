@@ -33,7 +33,7 @@ public class EmplacementControleurVue {
 	
 	class AjouterListener implements ActionListener
 	{
-		Quai quai;
+		private Quai quai;
 		public AjouterListener(Quai quai){
 			this.quai = quai;
 		}
@@ -78,7 +78,7 @@ public class EmplacementControleurVue {
 	
 	class ModifierListener implements ActionListener
 	{
-		Quai quai;
+		private Quai quai;
 		public ModifierListener(Quai quai){
 			this.quai = quai;
 		}
@@ -122,7 +122,7 @@ public class EmplacementControleurVue {
 	
 	class SupprimerListener implements ActionListener
 	{
-		Quai quai;
+		private Quai quai;
 		public SupprimerListener(Quai quai){
 			this.quai = quai;
 		}
@@ -136,6 +136,9 @@ public class EmplacementControleurVue {
 				EmplacementDAO.supprimerEmplacement(emplacement);
 				modele.setListeEmplacement(EmplacementDAO.recupererLesEmplacementsDunQuai(quai));
 				modele.fireTableStructureChanged();
+			}else{
+				JOptionPane d = new JOptionPane();
+		    	d.showMessageDialog( null, "Séléctionner un emplacement", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
 			}	
 		}
 	}
