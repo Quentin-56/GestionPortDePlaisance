@@ -47,6 +47,13 @@ public class Proprietaire {
 		this.listeDeBateaux = new ArrayList<>();
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return  nom+" habitant "+adresse;
+	}
+
 	//Getters et setters
 	public int getIdProprietaire() {
 		return idProprietaire;

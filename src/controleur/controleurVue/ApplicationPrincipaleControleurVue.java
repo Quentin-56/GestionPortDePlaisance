@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -18,6 +19,7 @@ import modele.Emplacement;
 import modele.Port;
 import modele.Proprietaire;
 import modele.Quai;
+import vue.AjouterBateauVue;
 import vue.ApplicationPrincipaleVue;
 import vue.EmplacementVue;
 import vue.ProprietaireVue;
@@ -124,68 +126,8 @@ public class ApplicationPrincipaleControleurVue
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
+			new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
 			
-			Object[] fieldsAdd = {" Nom :", nom, 
-					  "Poids :", poids,
-					  "Categorie :", categorie,
-					  typeLabel.getText()+" :", type, 
-					  "Proprietaire :",	proprietaire,
-					  "Emplacement :", emplacement, 
-					  };
-			
-			categorie.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					if(categorie.getSelectedIndex() == 0)
-					{
-						 typeLabel.setText("Surface voile");
-						 System.out.println("hello");
-					}else
-					{
-						typeLabel.setText("Chevaux vapeur");
-						typeLabel.repaint();
-						typeLabel.updateUI();
-						System.out.println("hi");
-					}
-						
-					
-				}
-				
-			});
-			
-			int option = JOptionPane.showConfirmDialog(null, fieldsAdd, "Ajouter bateau", JOptionPane.OK_CANCEL_OPTION);
-			try {
-				if (option == JOptionPane.OK_OPTION) 
-				{
-						/*String nomP = nom.getText();
-						Categorie catP =categorie.getItemAt(categorie.getSelectedIndex());
-						String espP = espece.getText();
-						Double prixP = Double.valueOf(prix.getText().replace(",", "."));
-						int quantiteP = Integer.parseInt(quantite.getText());
-					
-							if(prixP < 0 || quantiteP < 0){
-							
-								throw new Exception();
-							} 
-						
-						
-						Produit prod = new Produit(nomP,catP,espP,prixP,quantiteP);
-						
-						ProduitController.ajouterProduit(prod);
-						
-						modele.actualiserProduits();
-						
-						nom.setText(null);
-						espece.setText(null);
-						prix.setText(null);
-						quantite.setText(null);*/
-						
-				}
-			}catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "Nombre Negatif Interdit", "Erreur", JOptionPane.ERROR_MESSAGE);
-				}
 		}
 	}
 }

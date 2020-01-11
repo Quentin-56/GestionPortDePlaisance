@@ -76,5 +76,17 @@ public class EmplacementDAO {
         
         return emplacement;
 	}
+	
+	/**
+	 * Recuperer tous les emplacements libre d'un quai
+	 * @param quai quai selectione
+	 * @return liste d'emplacement
+	 */
+	public static List<Emplacement> recupererLesEmplacementsLibre(Quai quai){
+		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.bateau = ?1");
+		requete.setParameter(1, null);
+		List<Emplacement> listeEmplacement = requete.getResultList();
+		return listeEmplacement;		
+	}
 
 }
