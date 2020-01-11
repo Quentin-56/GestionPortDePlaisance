@@ -19,6 +19,7 @@ import modele.Port;
 import modele.Proprietaire;
 import modele.Quai;
 import vue.ApplicationPrincipaleVue;
+import vue.EmplacementVue;
 import vue.ProprietaireVue;
 import vue.QuaiVue;
 
@@ -29,6 +30,7 @@ public class ApplicationPrincipaleControleurVue
 	private Port port = PortDAO.retournerPort();
 	private BateauPatron modele = ApplicationPrincipaleVue.getModele();
 	private JTable table = ApplicationPrincipaleVue.getTable();
+	private Quai quai;
 	
 	public ApplicationPrincipaleControleurVue()
 	{
@@ -48,7 +50,7 @@ public class ApplicationPrincipaleControleurVue
 		
 		if(comboboxQuai.getSelectedItem() != null)
 		{
-			Quai quai = (Quai) comboboxQuai.getSelectedItem();
+			quai = (Quai) comboboxQuai.getSelectedItem();
 			afficherBateauxDuQuai(quai);
 		}
 		
@@ -75,7 +77,7 @@ public class ApplicationPrincipaleControleurVue
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			Quai quai = (Quai) comboboxQuai.getSelectedItem();
+			quai = (Quai) comboboxQuai.getSelectedItem();
 			afficherBateauxDuQuai(quai);
 		}
 	}
@@ -103,7 +105,7 @@ public class ApplicationPrincipaleControleurVue
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			//Rien encore
+			new EmplacementVue(quai);
 		}
 	}
 	

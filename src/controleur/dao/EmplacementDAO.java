@@ -55,8 +55,8 @@ public class EmplacementDAO {
 	 * @return liste d'emplacement
 	 */
 	public static List<Emplacement> recupererLesEmplacementsDunQuai(Quai quai){
-		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.quai_code = ?1");
-		requete.setParameter(1, quai.getCode());
+		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.quai = ?1");
+		requete.setParameter(1, quai);
 		List<Emplacement> listeEmplacement = requete.getResultList();
 		return listeEmplacement;		
 	}

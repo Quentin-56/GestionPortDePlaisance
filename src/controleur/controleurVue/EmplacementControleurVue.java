@@ -25,9 +25,9 @@ public class EmplacementControleurVue {
 	private EmplacementPatron modele = EmplacementVue.getModele();
 	
 	public EmplacementControleurVue(Quai quai){
-		ProprietaireVue.ajouterListener(new AjouterListener(quai));
-		ProprietaireVue.modifierListener(new ModifierListener(quai));
-		ProprietaireVue.supprimerListener(new SupprimerListener(quai));
+		EmplacementVue.ajouterListener(new AjouterListener(quai));
+		EmplacementVue.modifierListener(new ModifierListener(quai));
+		EmplacementVue.supprimerListener(new SupprimerListener(quai));
 	}
 	
 	class AjouterListener implements ActionListener
@@ -43,8 +43,8 @@ public class EmplacementControleurVue {
 		    JTextField code = new JTextField();
 		    JTextField taille = new JTextField();
 		    JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
-		      "Proprietaire",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
-		    if(code.getText().equals("") || taille.getText().equals("")){
+		      "Emplacement",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
+		    if(code.getText().isBlank()|| taille.getText().isBlank()){
 		    	JOptionPane d = new JOptionPane();
 		    	d.showMessageDialog( null, "Code ou Taille manquant", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
 		    }else{
@@ -72,7 +72,7 @@ public class EmplacementControleurVue {
 				 JTextField code = new JTextField(emplacement.getCode());
 				    JTextField taille = new JTextField(emplacement.getTaille()+"");
 				    JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
-				      "Proprietaire",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
+				      "Emplacement",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE, null, null, null); 
 				    if(code.getText().equals("") || taille.getText().equals("")){
 				    	JOptionPane d = new JOptionPane();
 				    	d.showMessageDialog( null, "Code ou Taille manquant", "Erreur modifier emplacement", JOptionPane.ERROR_MESSAGE);

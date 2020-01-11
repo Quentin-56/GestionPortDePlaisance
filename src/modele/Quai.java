@@ -19,7 +19,8 @@ public class Quai {
 	
 	@OneToMany(
 			mappedBy = "quai",
-			cascade = CascadeType.ALL
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
 	)
 	private List<Emplacement> listeEmplacements;
 	

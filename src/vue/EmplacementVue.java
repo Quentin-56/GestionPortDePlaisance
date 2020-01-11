@@ -27,7 +27,7 @@ public class EmplacementVue extends JFrame {
 	public EmplacementVue(Quai quai){
 		modele = new EmplacementPatron(quai);
 		
-		this.setTitle("Gestion des proprietaires");
+		this.setTitle("Gestion des emplacement");
 		this.add(panelwest, BorderLayout.WEST);
 		// Creation boite verticale pour inserer les composants du panel de gauche
 		Box verticalBox = Box.createVerticalBox();

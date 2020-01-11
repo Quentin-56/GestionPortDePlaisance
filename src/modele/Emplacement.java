@@ -16,7 +16,7 @@ public class Emplacement {
 	
 	private double taille;
 	
-	@OneToOne(mappedBy = "emplacement", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "emplacement", cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
 	private Bateau bateau;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
