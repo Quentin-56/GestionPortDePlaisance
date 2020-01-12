@@ -100,16 +100,13 @@ public class AjouterBateauVue extends JDialog {
 	// Definir les actions sur les boutons
 	public static void comboboxListener(ActionListener comboboxListener) {
 		type.addActionListener(comboboxListener);
-
 	}
 
 	public static void validerListener(ActionListener validerListener) {
 		valider.addActionListener(validerListener);
-
 	}
 
 	public static void annulerListener(ActionListener annulerListener) {
 		annuler.addActionListener(annulerListener);
-
 	}
 }

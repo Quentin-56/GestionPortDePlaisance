@@ -68,7 +68,6 @@ public class AjouterBateauControleurVue {
 	{
 		Quai quaiCourant = (Quai) ApplicationPrincipaleVue.getComboboxQuais().getSelectedItem();
 		List<Emplacement> emplacements = EmplacementDAO.recupererLesEmplacementsDunQuai(quaiCourant);
-		System.out.println(emplacements);
 		for(Emplacement emp : emplacements)
 		{
 			if(emp.getBateau() == null)
@@ -135,7 +134,6 @@ public class AjouterBateauControleurVue {
 			centerPanel.updateUI();
 			
 			maFenetre.pack();
-			
 		}
 	}
 }

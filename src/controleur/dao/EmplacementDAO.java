@@ -61,12 +61,24 @@ public class EmplacementDAO {
 		return listeEmplacement;		
 	}
 	/**
-	 * Recuperer le nombre d'emplacement occupé dans un quai
+	 * Recuperer le nombre d'emplacement cree dans un quai
 	 * @param quai quai selectione
-	 * @return liste d'emplacement
+	 * @return nombre d'emplacements cree
 	 */
-	public static int recupererNombreEmplacementOccupeDansQuai(Quai quai){
+	public static int recupererNombreEmplacementCreeDansQuai(Quai quai){
 		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.quai = ?1");
+		requete.setParameter(1, quai);
+		return requete.getResultList().size();
+	}
+	
+	/**
+	 * Retourner le nombre d'emplacements occupe dans un quai
+	 * @param quai
+	 * @return le nombre d'emplacement occupe
+	 */
+	public static int recupererNombreEmplacementOccupeDansQuai(Quai quai)
+	{
+		Query requete = SetupEM.getEm().createQuery("FROM Emplacement e INNER JOIN Bateau b ON e.bateau = b.emplacement where e.quai = ?1");
 		requete.setParameter(1, quai);
 		return requete.getResultList().size();
 	}

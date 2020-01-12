@@ -30,7 +30,7 @@ public class EmplacementControleurVue {
 		EmplacementVue.modifierListener(new ModifierListener(quai));
 		EmplacementVue.supprimerListener(new SupprimerListener(quai));
 		
-		EmplacementVue.rafraichissementTexteEmplacement(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai), quai.getNombreEmplacements());
+		EmplacementVue.rafraichissementTexteEmplacement(EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai), quai.getNombreEmplacements());
 	}
 	
 	class AjouterListener implements ActionListener
@@ -44,7 +44,7 @@ public class EmplacementControleurVue {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			
-			if(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai)< quai.getNombreEmplacements()){
+			if(EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai)< quai.getNombreEmplacements()){
 				 JTextField code = new JTextField();
 				 JTextField taille = new JTextField();
 				 int r =JOptionPane.showOptionDialog(null, new Object[] {"Code :", code, "Taille :", taille},
@@ -70,7 +70,6 @@ public class EmplacementControleurVue {
 							 JOptionPane d = new JOptionPane();
 						     d.showMessageDialog( null, "Des nombres sont attendus", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
 						 }
-					    
 					 }    
 				 }
     
@@ -78,7 +77,7 @@ public class EmplacementControleurVue {
 				JOptionPane d = new JOptionPane();
 		    	d.showMessageDialog( null, "Nombre maximal d'emplacement atteind pour ce quai", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
 			}
-			EmplacementVue.rafraichissementTexteEmplacement(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai), quai.getNombreEmplacements()); 
+			EmplacementVue.rafraichissementTexteEmplacement(EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai), quai.getNombreEmplacements()); 
 		}
 	}
 	
@@ -146,7 +145,7 @@ public class EmplacementControleurVue {
 				JOptionPane d = new JOptionPane();
 		    	d.showMessageDialog( null, "Sélectionner un emplacement", "Erreur supprimer emplacement", JOptionPane.ERROR_MESSAGE);
 			}	
-			EmplacementVue.rafraichissementTexteEmplacement(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai), quai.getNombreEmplacements());
+			EmplacementVue.rafraichissementTexteEmplacement(EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai), quai.getNombreEmplacements());
 		}
 	}
 }

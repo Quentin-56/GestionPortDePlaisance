@@ -8,10 +8,12 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controleur.dao.BateauDAO;
+import controleur.dao.EmplacementDAO;
 import controleur.dao.PortDAO;
 import controleur.dao.QuaiDAO;
 import controleur.dao.SetupEM;
@@ -107,8 +109,16 @@ public class ApplicationPrincipaleControleurVue
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			
-			new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
+			if(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai) == EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai) && EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai) != quai.getNombreEmplacements())
+			{
+				JOptionPane.showMessageDialog(null, "Allez d'abord creer un emplacement","Erreur emplacement",JOptionPane.ERROR_MESSAGE);
+			}else if(EmplacementDAO.recupererNombreEmplacementOccupeDansQuai(quai) == quai.getNombreEmplacements())
+				{
+					JOptionPane.showMessageDialog(null, "Ce quai ne dispose plus d'emplacement","Erreur emplacement",JOptionPane.ERROR_MESSAGE);
+				}else 
+				{
+					new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
+				}
 		}
 	}
 	
@@ -128,4 +138,3 @@ public class ApplicationPrincipaleControleurVue
 		}	
 	}
 }
-
