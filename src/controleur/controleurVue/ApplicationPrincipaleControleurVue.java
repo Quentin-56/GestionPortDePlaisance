@@ -37,9 +37,7 @@ public class ApplicationPrincipaleControleurVue
 		ApplicationPrincipaleVue.supprimerListener(new SupprimerBateauListener());
 		ApplicationPrincipaleVue.modifierListener(new ModifierBateauListener());
 		
-		ApplicationPrincipaleVue.rafraichissementTexteEmplacement(0, 0);
-		ApplicationPrincipaleVue.rafraichissementTexteBateauAVoile(0);
-		ApplicationPrincipaleVue.rafraichissementTexteBateauAMoteur(0);
+		
 		
 		//Parcourir tout les quais du port et ajouter au combobox
 		for(Quai quai : port.getListeDeQuais())
@@ -53,6 +51,13 @@ public class ApplicationPrincipaleControleurVue
 			quai = (Quai) comboboxQuai.getSelectedItem();
 			modele.refresh();
 		}
+		int iVoilier =BateauDAO.recupererNbVoilierDunQuai(quai);
+		int iMoteur =BateauDAO.recupererNbBateauMoteurDunQuai(quai);
+		int iTotalDispo =EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai);
+		ApplicationPrincipaleVue.rafraichissementTexteEmplacement(iVoilier+iMoteur, iTotalDispo);
+		ApplicationPrincipaleVue.rafraichissementTexteBateauAVoile(iVoilier);
+		ApplicationPrincipaleVue.rafraichissementTexteBateauAMoteur(iMoteur);
+		
 	}
 	
 	class ComboboxListener implements ActionListener
@@ -106,6 +111,12 @@ public class ApplicationPrincipaleControleurVue
 				}else 
 				{
 					new EditerBateauVue(null, "Ajouter un bateau", null);
+					int iVoilier =BateauDAO.recupererNbVoilierDunQuai(quai);
+					int iMoteur =BateauDAO.recupererNbBateauMoteurDunQuai(quai);
+					int iTotalDispo =EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai);
+					ApplicationPrincipaleVue.rafraichissementTexteEmplacement(iVoilier+iMoteur, iTotalDispo);
+					ApplicationPrincipaleVue.rafraichissementTexteBateauAVoile(iVoilier);
+					ApplicationPrincipaleVue.rafraichissementTexteBateauAMoteur(iMoteur);
 				}
 		}
 	}
@@ -123,6 +134,12 @@ public class ApplicationPrincipaleControleurVue
 				BateauDAO.supprimerBateau(bateau);
 				bateau.getEmplacement().setBateau(null);
 				modele.refresh();
+				int iVoilier =BateauDAO.recupererNbVoilierDunQuai(quai);
+				int iMoteur =BateauDAO.recupererNbBateauMoteurDunQuai(quai);
+				int iTotalDispo =EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai);
+				ApplicationPrincipaleVue.rafraichissementTexteEmplacement(iVoilier+iMoteur, iTotalDispo);
+				ApplicationPrincipaleVue.rafraichissementTexteBateauAVoile(iVoilier);
+				ApplicationPrincipaleVue.rafraichissementTexteBateauAMoteur(iMoteur);
 			}
 		}	
 	}

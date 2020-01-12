@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import modele.Bateau;
 import modele.Emplacement;
 import modele.Proprietaire;
+import modele.Quai;
 
 public class BateauDAO {
 	/**
@@ -53,9 +54,9 @@ public class BateauDAO {
 	 * Recuperer tous les bateaux
 	 * @return liste des bateaux
 	 */
-	public static List<Emplacement> recupererLesEmplacementsDunQuai(){
+	public static List<Bateau> recupererLesBateauxs(){
 		Query requete = SetupEM.getEm().createQuery("from Bateau ");
-		List<Emplacement> listeBateau = requete.getResultList();
+		List<Bateau> listeBateau = requete.getResultList();
 		return listeBateau;		
 	}
 	
@@ -70,5 +71,24 @@ public class BateauDAO {
 		requete.setParameter(1, emplacement);
 		return (Bateau) requete.getSingleResult();
 	}
-	
+	/**
+	 * Recuperer le nombre de voilier d'un quai
+	 * @param quai
+	 * @return
+	 */
+	public static int recupererNbVoilierDunQuai(Quai quai){
+		Query requete = SetupEM.getEm().createQuery("from Voilier v where v.emplacement in ( select e from Emplacement e where e.quai = ?1)");
+		requete.setParameter(1, quai);
+		return requete.getResultList().size();
+	}
+	/**
+	 * Recuperer le nombre de bateau moteur d'un quai
+	 * @param quai
+	 * @return
+	 */
+	public static int recupererNbBateauMoteurDunQuai(Quai quai){
+		Query requete = SetupEM.getEm().createQuery("from BateauMoteur v where v.emplacement in ( select e from Emplacement e where e.quai = ?1)");
+		requete.setParameter(1, quai);
+		return requete.getResultList().size();
+	}
 }
