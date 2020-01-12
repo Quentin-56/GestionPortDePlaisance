@@ -59,10 +59,14 @@ public class EditerBateauControleurVue {
 		remplirProprietaire();
 		remplirEmplacement();
 		
-		nom.setText(bateau.getNom());
-		poids.setText(bateau.getPoids()+"");
-		proprietaire.setSelectedItem(bateau.getPropietaire());
-		emplacement.setSelectedItem(bateau.getEmplacement());
+		if(bateau != null)
+		{
+			nom.setText(bateau.getNom());
+			poids.setText(bateau.getPoids()+"");
+			proprietaire.setSelectedItem(bateau.getPropietaire());
+			emplacement.addItem(bateau.getEmplacement());
+			emplacement.setSelectedItem(bateau.getEmplacement());
+		}
 	}
 	
 	public void remplirProprietaire()
