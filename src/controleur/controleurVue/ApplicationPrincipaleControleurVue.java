@@ -51,13 +51,17 @@ public class ApplicationPrincipaleControleurVue
 			quai = (Quai) comboboxQuai.getSelectedItem();
 			modele.refresh();
 		}
+		actualiserTexte(quai);
+	
+	}
+	
+	public static void actualiserTexte(Quai quai){
 		int iVoilier =BateauDAO.recupererNbVoilierDunQuai(quai);
 		int iMoteur =BateauDAO.recupererNbBateauMoteurDunQuai(quai);
 		int iTotalDispo =EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai);
 		ApplicationPrincipaleVue.rafraichissementTexteEmplacement(iVoilier+iMoteur, iTotalDispo);
 		ApplicationPrincipaleVue.rafraichissementTexteBateauAVoile(iVoilier);
 		ApplicationPrincipaleVue.rafraichissementTexteBateauAMoteur(iMoteur);
-		
 	}
 	
 	class ComboboxListener implements ActionListener
@@ -111,12 +115,7 @@ public class ApplicationPrincipaleControleurVue
 				}else 
 				{
 					new EditerBateauVue(null, "Ajouter un bateau", null);
-					int iVoilier =BateauDAO.recupererNbVoilierDunQuai(quai);
-					int iMoteur =BateauDAO.recupererNbBateauMoteurDunQuai(quai);
-					int iTotalDispo =EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai);
-					ApplicationPrincipaleVue.rafraichissementTexteEmplacement(iVoilier+iMoteur, iTotalDispo);
-					ApplicationPrincipaleVue.rafraichissementTexteBateauAVoile(iVoilier);
-					ApplicationPrincipaleVue.rafraichissementTexteBateauAMoteur(iMoteur);
+					actualiserTexte(quai);
 				}
 		}
 	}
@@ -134,12 +133,7 @@ public class ApplicationPrincipaleControleurVue
 				BateauDAO.supprimerBateau(bateau);
 				bateau.getEmplacement().setBateau(null);
 				modele.refresh();
-				int iVoilier =BateauDAO.recupererNbVoilierDunQuai(quai);
-				int iMoteur =BateauDAO.recupererNbBateauMoteurDunQuai(quai);
-				int iTotalDispo =EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai);
-				ApplicationPrincipaleVue.rafraichissementTexteEmplacement(iVoilier+iMoteur, iTotalDispo);
-				ApplicationPrincipaleVue.rafraichissementTexteBateauAVoile(iVoilier);
-				ApplicationPrincipaleVue.rafraichissementTexteBateauAMoteur(iMoteur);
+				actualiserTexte(quai);
 			}
 		}	
 	}
