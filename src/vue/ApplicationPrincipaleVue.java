@@ -25,7 +25,7 @@ import modele.Quai;
 public class ApplicationPrincipaleVue extends JFrame {
 	
 	private JPanel panelwest = new JPanel();
-	private static JButton gestionProprietaires, gestionEmplacements, gestionQuais, ajouter, supprimer, modifier;
+	private static JButton gestionProprietaires, gestionEmplacements, gestionQuais, ajouter, supprimer, modifier, voilier;
 	private static JTable table;
 	private static JComboBox comboboxQuais;
 	private static BateauPatron modele = new BateauPatron();
@@ -54,6 +54,8 @@ public class ApplicationPrincipaleVue extends JFrame {
 		emplacementLibre = new JLabel();
 		bateauVoile = new JLabel();
 		bateauMoteur = new JLabel();
+		
+		voilier = new JButton("Recherche sur voilier");
 		verticalBox.add(quais);
 		verticalBox.add(comboboxQuais);
 		verticalBox.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -65,11 +67,13 @@ public class ApplicationPrincipaleVue extends JFrame {
 		verticalBox.add(ajouter);
 		verticalBox.add(supprimer);
 		verticalBox.add(modifier);
+		verticalBox.add(voilier);
 		verticalBox.add(Box.createRigidArea(new Dimension(0, 20)));
 		verticalBox.add(infos);
 		verticalBox.add(emplacementLibre);
 		verticalBox.add(bateauVoile);
 		verticalBox.add(bateauMoteur);
+		
 		table = new JTable(modele);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -114,6 +118,10 @@ public class ApplicationPrincipaleVue extends JFrame {
 	}
 	public static void gestionQuaisListener(ActionListener actionListener) {
 		gestionQuais.addActionListener(actionListener);
+		
+	}
+	public static void voilierListener(ActionListener actionListener) {
+		voilier.addActionListener(actionListener);
 		
 	}
 	//Rafraichissement du texte

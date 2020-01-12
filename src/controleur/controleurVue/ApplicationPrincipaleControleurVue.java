@@ -2,9 +2,11 @@ package controleur.controleurVue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+
 import controleur.dao.BateauDAO;
 import controleur.dao.EmplacementDAO;
 import controleur.dao.PortDAO;
@@ -36,7 +38,7 @@ public class ApplicationPrincipaleControleurVue
 		ApplicationPrincipaleVue.ajouterListener(new AjouterBateauListener());
 		ApplicationPrincipaleVue.supprimerListener(new SupprimerBateauListener());
 		ApplicationPrincipaleVue.modifierListener(new ModifierBateauListener());
-		
+		ApplicationPrincipaleVue.voilierListener(new VoilierListener());
 		
 		
 		//Parcourir tout les quais du port et ajouter au combobox
@@ -154,5 +156,24 @@ public class ApplicationPrincipaleControleurVue
 				modele.refresh();
 			}
 		}	
+	}
+	class VoilierListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String retour = JOptionPane.showInputDialog(null,"Afficher les voiliers ayant une voile plus grande ou égalee à la valeur saisie","Recherche sur voilier", JOptionPane.QUESTION_MESSAGE);
+			
+			if(!retour.isEmpty()){
+				try{
+					
+				}catch(NumberFormatException e){
+					 JOptionPane d = new JOptionPane();
+				     JOptionPane.showMessageDialog( null, "Des nombres sont attendus", "Recherche sur voilier", JOptionPane.ERROR_MESSAGE);
+					
+				}
+			}
+			
+		}
 	}
 }
