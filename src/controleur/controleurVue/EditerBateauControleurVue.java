@@ -16,11 +16,13 @@ import controleur.dao.EmplacementDAO;
 import controleur.dao.ProprietaireDAO;
 import controleur.dao.VoilierDAO;
 import modele.Bateau;
+import modele.BateauMoteur;
 import modele.Emplacement;
 import modele.Proprietaire;
 import modele.Quai;
-import vue.EditerBateauVue;
+import modele.Voilier;
 import vue.ApplicationPrincipaleVue;
+import vue.EditerBateauVue;
 
 public class EditerBateauControleurVue {
 	
@@ -66,6 +68,20 @@ public class EditerBateauControleurVue {
 			proprietaire.setSelectedItem(bateau.getPropietaire());
 			emplacement.addItem(bateau.getEmplacement());
 			emplacement.setSelectedItem(bateau.getEmplacement());
+			
+			//Si est un voilier sinon est un bateau a moteur
+			if(BateauDAO.estUnVoilier(bateau))
+			{
+				Voilier voilier = VoilierDAO.trouverVoilierAvecSonId(bateau.getIdBateau());
+				type.removeItem(TypeDeBateau.BateauAMoteur);
+				typeTF.setText(voilier.getSurfaceTotaleVoile()+"");
+			}else
+			{
+				type.removeItem(TypeDeBateau.BateauAVoile);
+				typeLabel.setText("Nombre de chevaux vapeur :");
+				BateauMoteur bateauMoteur = BateauMoteurDAO.trouverBateauMoteurAvecSonId(bateau.getIdBateau());
+				typeTF.setText(bateauMoteur.getNombreChevauxVapeur()+"");
+			}
 		}
 	}
 	
@@ -159,9 +175,50 @@ public class EditerBateauControleurVue {
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			
-			//TODO
-			maFenetre.dispose();
+			try {
+				String nomBateau = nom.getText();
+				double poidsBateau = Double.parseDouble(poids.getText());
+				Proprietaire proprietaireBateau = (Proprietaire)proprietaire.getSelectedItem();
+				Emplacement emplacementBateau = (Emplacement) emplacement.getSelectedItem();
+				boolean emplacementEstModifie = false;
+				Emplacement emplacementActuel = bateau.getEmplacement();
+				
+				if(emplacementBateau.getCode() != bateau.getEmplacement().getCode())
+				{
+					emplacementEstModifie = true;
+				}
+				
+				if(type.getSelectedItem().equals(TypeDeBateau.BateauAMoteur))
+				{
+					int moteur = Integer.parseInt(typeTF.getText());
+					
+					BateauMoteur bateauMoteur = new BateauMoteur(nomBateau, poidsBateau, proprietaireBateau, moteur, emplacementBateau);
+					bateauMoteur.setIdBateau(bateau.getIdBateau());
+					BateauMoteurDAO.modifierBateauMoteur(bateauMoteur);  
+				}
+				else {
+					double voile = Double.parseDouble(typeTF.getText());
+					
+					Voilier voilier = new Voilier(nomBateau, poidsBateau, proprietaireBateau, voile, emplacementBateau);
+					voilier.setIdBateau(bateau.getIdBateau());
+					VoilierDAO.modifierVoilier(voilier);
+				}
+				
+				Bateau bateau = BateauDAO.retournerBateauDeLEmplacement(emplacementBateau);
+				emplacementBateau.setBateau(bateau);
+				
+				//Changement d'emplacement du bateau
+				if(emplacementEstModifie)
+				{
+					emplacementActuel.setBateau(null);
+				}
+				
+				maFenetre.dispose();
+				ApplicationPrincipaleVue.getModele().refresh();
+			}catch(NumberFormatException exception)
+			{
+				JOptionPane.showMessageDialog(null, "Champ(s) vide(s) ou incorrect(s)","Erreur de saisie",JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 }

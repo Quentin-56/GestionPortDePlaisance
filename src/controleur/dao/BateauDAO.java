@@ -71,6 +71,7 @@ public class BateauDAO {
 		requete.setParameter(1, emplacement);
 		return (Bateau) requete.getSingleResult();
 	}
+
 	/**
 	 * Recuperer le nombre de voilier d'un quai
 	 * @param quai
@@ -90,5 +91,19 @@ public class BateauDAO {
 		Query requete = SetupEM.getEm().createQuery("from BateauMoteur v where v.emplacement in ( select e from Emplacement e where e.quai = ?1)");
 		requete.setParameter(1, quai);
 		return requete.getResultList().size();
+	}
+	
+	public static boolean estUnVoilier(Bateau bateau)
+	{
+		Query requete = SetupEM.getEm().createQuery("from Voilier v WHERE v.idBateau = ?1");
+		requete.setParameter(1, bateau.getIdBateau());
+
+		if(requete.getResultList().size() == 0)
+		{
+			return false;
+		}else
+		{
+			return true;
+		}
 	}
 }
