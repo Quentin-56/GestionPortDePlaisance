@@ -88,7 +88,7 @@ public class BateauDAO {
 	 * @return
 	 */
 	public static int recupererNbBateauMoteurDunQuai(Quai quai){
-		Query requete = SetupEM.getEm().createQuery("from BateauMoteur v where v.emplacement in ( select e from Emplacement e where e.quai = ?1)");
+		Query requete = SetupEM.getEm().createQuery("from BateauMoteur v where v.emplacement in (select e from Emplacement e where e.quai = ?1)");
 		requete.setParameter(1, quai);
 		return requete.getResultList().size();
 	}

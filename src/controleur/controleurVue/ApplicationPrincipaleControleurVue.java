@@ -169,13 +169,11 @@ public class ApplicationPrincipaleControleurVue
 			String saisie = jop.showInputDialog(null,"Afficher les voiliers ayant une voile plus grande à la valeur saisie","Recherche sur voilier", JOptionPane.QUESTION_MESSAGE);
 			Double valeurSaisie = Double.parseDouble(saisie);
 			new VoilierVue(valeurSaisie);
-			if(jop.CANCEL_OPTION == 1)
-			{
-				
-			}
+			
 				}catch(NumberFormatException e){
 					 JOptionPane d = new JOptionPane();
 				     JOptionPane.showMessageDialog( null, "Des nombres sont attendus", "Recherche sur voilier", JOptionPane.ERROR_MESSAGE);
+				}catch(java.lang.NullPointerException e) {
 				}
 		}
 	}

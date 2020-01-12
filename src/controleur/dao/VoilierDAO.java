@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import modele.Emplacement;
 import modele.Proprietaire;
+import modele.Quai;
 import modele.Voilier;
 
 public class VoilierDAO {
@@ -72,9 +73,11 @@ public class VoilierDAO {
 		return voilier;
 	}
 	
-	public static List<Voilier> trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(double valeur)
+	public static List<Voilier> trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(double valeur, Quai quai)
 	{
-		Query requete = SetupEM.getEm().createQuery("from Voilier v WHERE v.surfaceTotaleVoile > ?1");
+		Query requete = SetupEM.getEm().createQuery("From Voilier v where v.surfaceTotaleVoile > ?1 and v.emplacement  in (select e from Emplacement e where e.quai =?2)" + 
+				"");
+		requete.setParameter(2, quai);
 		requete.setParameter(1, valeur);
 		return requete.getResultList();
 	}

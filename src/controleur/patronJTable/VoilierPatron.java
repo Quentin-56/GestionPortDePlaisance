@@ -34,7 +34,7 @@ public class VoilierPatron extends AbstractTableModel{
 
 	public void refresh(Double valeur)
 	{
-			listesVoiliers = VoilierDAO.trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(valeur);
+			listesVoiliers = VoilierDAO.trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(valeur, (Quai)ApplicationPrincipaleVue.getComboboxQuais().getSelectedItem());
 			fireTableDataChanged();
 	}
 	
