@@ -15,14 +15,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controleur.controleurVue.AjouterBateauControleurVue;
+import controleur.controleurVue.EditerBateauControleurVue;
 import controleur.controleurVue.TypeDeBateau;
+import modele.Bateau;
 import modele.Emplacement;
 import modele.Proprietaire;
 
-public class AjouterBateauVue extends JDialog {
+public class EditerBateauVue extends JDialog {
 
-	private static JButton annuler, valider;
+	private static JButton annuler, valider, modifier;
 	private JPanel centerPanel = new JPanel();
 	private JTextField nom = new JTextField();
 	private JTextField poids = new JTextField();
@@ -31,7 +32,7 @@ public class AjouterBateauVue extends JDialog {
 	private JComboBox<Proprietaire> proprietaire = new JComboBox<Proprietaire>();
 	private JComboBox<Emplacement> emplacement = new JComboBox<Emplacement>();
 	private JLabel typeLabel = new JLabel("Surface totale de la voile :");
-	private AjouterBateauVue maFenetre = this;
+	private EditerBateauVue maFenetre = this;
 	private JLabel nomLabel, poidsLabel, proprietaireLabel, emplacementLabel, categorieLabel;
 
 	/**
@@ -40,11 +41,11 @@ public class AjouterBateauVue extends JDialog {
 	 * @param frame la fenetre ou le pop up apparait
 	 * @param titre titre du pop up
 	 */
-	public AjouterBateauVue(JFrame frame, String titre) {
+	public EditerBateauVue(JFrame frame, String titre, Bateau bateau) {
 		super(frame, titre);
 
 		this.setLocationRelativeTo(null);
-		init();
+		init(bateau);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		pack();
@@ -53,7 +54,7 @@ public class AjouterBateauVue extends JDialog {
 	/**
 	 * Methode permettant de creer un pop up pour effectuer le filtrage des pointages
 	 */
-	public void init()
+	public void init(Bateau bateau)
 	{	
 		JPanel northPanel = new JPanel(new FlowLayout());
 		
@@ -61,9 +62,19 @@ public class AjouterBateauVue extends JDialog {
 		
 		annuler = new JButton("Annuler");
 		valider = new JButton("Valider");
+		modifier = new JButton("Modifier");
 		
 		southPanel.add(annuler, BorderLayout.WEST);
-		southPanel.add(valider, BorderLayout.EAST);
+		
+		//Si nous creons un bateau
+		if(bateau == null )
+		{
+			southPanel.add(valider, BorderLayout.EAST);
+		}else
+		{
+			southPanel.add(modifier, BorderLayout.EAST);
+		}
+		
 		
 		Container contentPane = this.getContentPane();
 		contentPane.add(northPanel, BorderLayout.NORTH);
@@ -94,7 +105,7 @@ public class AjouterBateauVue extends JDialog {
 		verticalBox.add(emplacementLabel);
 		verticalBox.add(emplacement);
 		
-		new AjouterBateauControleurVue(nom, poids, typeTF,proprietaire, emplacement, typeLabel, this, centerPanel,type);
+		new EditerBateauControleurVue(nom, poids, typeTF,proprietaire, emplacement, typeLabel, this, centerPanel,type, bateau);
 	}
 
 	// Definir les actions sur les boutons
@@ -104,6 +115,10 @@ public class AjouterBateauVue extends JDialog {
 
 	public static void validerListener(ActionListener validerListener) {
 		valider.addActionListener(validerListener);
+	}
+	
+	public static void modifierListener(ActionListener modifierListener) {
+		modifier.addActionListener(modifierListener);
 	}
 
 	public static void annulerListener(ActionListener annulerListener) {

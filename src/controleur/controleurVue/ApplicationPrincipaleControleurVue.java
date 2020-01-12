@@ -2,28 +2,17 @@ package controleur.controleurVue;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-
 import controleur.dao.BateauDAO;
 import controleur.dao.EmplacementDAO;
 import controleur.dao.PortDAO;
-import controleur.dao.QuaiDAO;
-import controleur.dao.SetupEM;
 import controleur.patronJTable.BateauPatron;
 import modele.Bateau;
-import modele.Emplacement;
 import modele.Port;
-import modele.Proprietaire;
 import modele.Quai;
-import vue.AjouterBateauVue;
+import vue.EditerBateauVue;
 import vue.ApplicationPrincipaleVue;
 import vue.EmplacementVue;
 import vue.ProprietaireVue;
@@ -61,11 +50,6 @@ public class ApplicationPrincipaleControleurVue
 			quai = (Quai) comboboxQuai.getSelectedItem();
 			modele.refresh();
 		}
-	}
-	
-	public void afficherBateauxDuQuaiCourant()
-	{
-		
 	}
 	
 	class ComboboxListener implements ActionListener
@@ -118,7 +102,7 @@ public class ApplicationPrincipaleControleurVue
 					JOptionPane.showMessageDialog(null, "Ce quai ne dispose plus d'emplacement","Erreur emplacement",JOptionPane.ERROR_MESSAGE);
 				}else 
 				{
-					new AjouterBateauVue(null, "Ajouter un bateau");
+					new EditerBateauVue(null, "Ajouter un bateau", null);
 				}
 		}
 	}
@@ -150,7 +134,9 @@ public class ApplicationPrincipaleControleurVue
 			if(ligneSelectionnee != -1)
 			{
 				Bateau bateau = modele.retournerBateau(ligneSelectionnee);
-				BateauDAO.supprimerBateau(bateau);
+				
+				new EditerBateauVue(null, "Modifier un bateau",bateau);
+
 				modele.refresh();
 			}
 		}	

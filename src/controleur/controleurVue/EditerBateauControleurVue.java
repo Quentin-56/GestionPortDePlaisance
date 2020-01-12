@@ -19,10 +19,10 @@ import modele.Bateau;
 import modele.Emplacement;
 import modele.Proprietaire;
 import modele.Quai;
-import vue.AjouterBateauVue;
+import vue.EditerBateauVue;
 import vue.ApplicationPrincipaleVue;
 
-public class AjouterBateauControleurVue {
+public class EditerBateauControleurVue {
 	
 	private JTextField nom;
 	private JTextField poids;
@@ -30,18 +30,20 @@ public class AjouterBateauControleurVue {
 	private JComboBox<Proprietaire> proprietaire;
 	private JComboBox<Emplacement> emplacement;
 	private JLabel typeLabel;
-	private AjouterBateauVue maFenetre;
+	private EditerBateauVue maFenetre;
 	private JPanel centerPanel;
 	private JComboBox<TypeDeBateau> type;
+	private Bateau bateau;
 
 	
-	public AjouterBateauControleurVue(JTextField nom,JTextField poids,JTextField typeTF,JComboBox<Proprietaire> proprietaire,
-			JComboBox<Emplacement> emplacement,JLabel typeLabel,AjouterBateauVue maFenetre,JPanel centerPanel,
-			JComboBox<TypeDeBateau> type) {
+	public EditerBateauControleurVue(JTextField nom,JTextField poids,JTextField typeTF,JComboBox<Proprietaire> proprietaire,
+			JComboBox<Emplacement> emplacement,JLabel typeLabel,EditerBateauVue maFenetre,JPanel centerPanel,
+			JComboBox<TypeDeBateau> type, Bateau bateau) {
 		
-		AjouterBateauVue.comboboxListener(new ComboboxListener());
-		AjouterBateauVue.annulerListener(new AnnulerBateauListener());
-		AjouterBateauVue.validerListener(new ValiderBateauListener());
+		EditerBateauVue.comboboxListener(new ComboboxListener());
+		EditerBateauVue.annulerListener(new AnnulerBateauListener());
+		EditerBateauVue.validerListener(new ValiderBateauListener());
+		EditerBateauVue.modifierListener(new ModifierBateauListener());
 		
 		this.nom = nom;
 		this.poids = poids;
@@ -52,9 +54,15 @@ public class AjouterBateauControleurVue {
 		this.maFenetre = maFenetre;
 		this.centerPanel = centerPanel;
 		this.type = type;
+		this.bateau = bateau;
 		
 		remplirProprietaire();
 		remplirEmplacement();
+		
+		nom.setText(bateau.getNom());
+		poids.setText(bateau.getPoids()+"");
+		proprietaire.setSelectedItem(bateau.getPropietaire());
+		emplacement.setSelectedItem(bateau.getEmplacement());
 	}
 	
 	public void remplirProprietaire()
@@ -139,6 +147,17 @@ public class AjouterBateauControleurVue {
 			centerPanel.updateUI();
 			
 			maFenetre.pack();
+		}
+	}
+	
+	class ModifierBateauListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			
+			//TODO
+			maFenetre.dispose();
 		}
 	}
 }
