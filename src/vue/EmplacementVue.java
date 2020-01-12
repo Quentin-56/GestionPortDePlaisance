@@ -131,6 +131,4 @@ public class EmplacementVue extends JFrame {
 	public static void setModele(EmplacementPatron modele) {
 		EmplacementVue.modele = modele;
 	}
-	
-	
 }
