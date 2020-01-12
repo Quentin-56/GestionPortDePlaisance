@@ -29,12 +29,14 @@ public class ApplicationPrincipaleVue extends JFrame {
 	private static JTable table;
 	private static JComboBox comboboxQuais;
 	private static BateauPatron modele = new BateauPatron();
-	private JLabel gestionBateaux, quais;
+	private JLabel gestionBateaux, quais, infos;
+	private static JLabel emplacementLibre;
+	private static JLabel bateauVoile;
+	private static JLabel bateauMoteur;
 
 	public ApplicationPrincipaleVue(){
 		this.setTitle("Gestion du Port");
 		this.add(panelwest, BorderLayout.WEST);
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		// Creation boite verticale pour inserer les composants du panel de gauche
 		Box verticalBox = Box.createVerticalBox();
 		panelwest.add(verticalBox);
@@ -48,6 +50,10 @@ public class ApplicationPrincipaleVue extends JFrame {
 		supprimer = new JButton("Supprimer", new ImageIcon("images"+File.separator+"supprimer.png"));
 		modifier = new JButton("Modifier    ", new ImageIcon("images"+File.separator+"modifier.png"));
 		
+		infos = new JLabel("Informations pratiques :");
+		emplacementLibre = new JLabel();
+		bateauVoile = new JLabel();
+		bateauMoteur = new JLabel();
 		verticalBox.add(quais);
 		verticalBox.add(comboboxQuais);
 		verticalBox.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -59,7 +65,11 @@ public class ApplicationPrincipaleVue extends JFrame {
 		verticalBox.add(ajouter);
 		verticalBox.add(supprimer);
 		verticalBox.add(modifier);
-		
+		verticalBox.add(Box.createRigidArea(new Dimension(0, 20)));
+		verticalBox.add(infos);
+		verticalBox.add(emplacementLibre);
+		verticalBox.add(bateauVoile);
+		verticalBox.add(bateauMoteur);
 		table = new JTable(modele);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -106,7 +116,16 @@ public class ApplicationPrincipaleVue extends JFrame {
 		gestionQuais.addActionListener(actionListener);
 		
 	}
-	
+	//Rafraichissement du texte
+	public static void rafraichissementTexteEmplacement(int occupee, int total){
+		emplacementLibre.setText(occupee +" emplacement(s) occupé(s) sur "+ total +" dispo.");
+	}
+	public static void rafraichissementTexteBateauAVoile(int nbVoilier){
+		bateauVoile.setText("Nombre de Voilier : "+nbVoilier);
+	}
+	public static void rafraichissementTexteBateauAMoteur(int nbBateauMoteur){
+		bateauMoteur.setText("Nombre de Bateau à moteur : "+nbBateauMoteur);
+	}
 	//Getters et setters
 	public static JTable getTable() {
 		return table;

@@ -37,6 +37,9 @@ public class ApplicationPrincipaleControleurVue
 		ApplicationPrincipaleVue.supprimerListener(new SupprimerBateauListener());
 		ApplicationPrincipaleVue.modifierListener(new ModifierBateauListener());
 		
+		ApplicationPrincipaleVue.rafraichissementTexteEmplacement(0, 0);
+		ApplicationPrincipaleVue.rafraichissementTexteBateauAVoile(0);
+		ApplicationPrincipaleVue.rafraichissementTexteBateauAMoteur(0);
 		
 		//Parcourir tout les quais du port et ajouter au combobox
 		for(Quai quai : port.getListeDeQuais())
