@@ -71,6 +71,7 @@ public class ApplicationPrincipaleControleurVue
 			
 			quai = (Quai) comboboxQuai.getSelectedItem();
 			modele.refresh();
+			actualiserTexte(quai);
 		}
 	}
 	
