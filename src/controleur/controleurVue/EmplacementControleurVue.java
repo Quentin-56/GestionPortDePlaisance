@@ -78,6 +78,7 @@ public class EmplacementControleurVue {
 		    	d.showMessageDialog( null, "Nombre maximal d'emplacement atteind pour ce quai", "Erreur ajout emplacement", JOptionPane.ERROR_MESSAGE);
 			}
 			EmplacementVue.rafraichissementTexteEmplacement(EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai), quai.getNombreEmplacements()); 
+			ApplicationPrincipaleControleurVue.actualiserTexte(quai);
 		}
 	}
 	
@@ -146,6 +147,7 @@ public class EmplacementControleurVue {
 		    	d.showMessageDialog( null, "Sélectionner un emplacement", "Erreur supprimer emplacement", JOptionPane.ERROR_MESSAGE);
 			}	
 			EmplacementVue.rafraichissementTexteEmplacement(EmplacementDAO.recupererNombreEmplacementCreeDansQuai(quai), quai.getNombreEmplacements());
+			ApplicationPrincipaleControleurVue.actualiserTexte(quai);
 		}
 	}
 }
