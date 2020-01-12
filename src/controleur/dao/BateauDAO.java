@@ -71,4 +71,17 @@ public class BateauDAO {
 		return (Bateau) requete.getSingleResult();
 	}
 	
+	public static boolean estUnVoilier(Bateau bateau)
+	{
+		Query requete = SetupEM.getEm().createQuery("from Voilier v WHERE v.idBateau = ?1");
+		requete.setParameter(1, bateau.getIdBateau());
+
+		if(requete.getResultList().size() == 0)
+		{
+			return false;
+		}else
+		{
+			return true;
+		}
+	}
 }

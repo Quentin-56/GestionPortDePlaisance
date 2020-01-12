@@ -59,7 +59,7 @@ public class VoilierDAO {
 	 * @param idVoilier
 	 * @return le voilier associe a l'id
 	 */
-	public static Voilier trouverProprietaireAvecSonId(int idVoilier) {
+	public static Voilier trouverVoilierAvecSonId(int idVoilier) {
 		EntityManager em = SetupEM.getEm();
 		em.getTransaction().begin();
 

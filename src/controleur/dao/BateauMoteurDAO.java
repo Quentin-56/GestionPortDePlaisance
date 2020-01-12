@@ -58,7 +58,7 @@ public class BateauMoteurDAO {
 	 * @param idBateau
 	 * @return le bateau moteur associe a l'id
 	 */
-	public static BateauMoteur trouverProprietaireAvecSonId(int idBateau) {
+	public static BateauMoteur trouverBateauMoteurAvecSonId(int idBateau) {
 		EntityManager em = SetupEM.getEm();
 		em.getTransaction().begin();
 
