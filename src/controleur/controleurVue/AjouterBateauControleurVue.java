@@ -10,10 +10,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controleur.dao.BateauDAO;
 import controleur.dao.BateauMoteurDAO;
 import controleur.dao.EmplacementDAO;
 import controleur.dao.ProprietaireDAO;
 import controleur.dao.VoilierDAO;
+import modele.Bateau;
 import modele.Emplacement;
 import modele.Proprietaire;
 import modele.Quai;
@@ -98,6 +100,9 @@ public class AjouterBateauControleurVue {
 					double voile = Double.parseDouble(typeTF.getText());
 					VoilierDAO.ajouterVoilier(nomBateau, poidsBateau, proprietaireBateau, voile, emplacementBateau);
 				}
+				
+				Bateau bateau = BateauDAO.retournerBateauDeLEmplacement(emplacementBateau);
+				emplacementBateau.setBateau(bateau);
 				
 				maFenetre.dispose();
 				ApplicationPrincipaleVue.getModele().refresh();

@@ -46,6 +46,7 @@ public class ApplicationPrincipaleControleurVue
 		ApplicationPrincipaleVue.gestionEmplacementsListener(new GestionEmplacementsListener());
 		ApplicationPrincipaleVue.ajouterListener(new AjouterBateauListener());
 		ApplicationPrincipaleVue.supprimerListener(new SupprimerBateauListener());
+		ApplicationPrincipaleVue.modifierListener(new ModifierBateauListener());
 		
 		
 		//Parcourir tout les quais du port et ajouter au combobox
@@ -117,12 +118,29 @@ public class ApplicationPrincipaleControleurVue
 					JOptionPane.showMessageDialog(null, "Ce quai ne dispose plus d'emplacement","Erreur emplacement",JOptionPane.ERROR_MESSAGE);
 				}else 
 				{
-					new AjouterBateauVue(new JFrame(), "Ajouter un bateau");
+					new AjouterBateauVue(null, "Ajouter un bateau");
 				}
 		}
 	}
 	
 	class SupprimerBateauListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			int ligneSelectionnee = table.getSelectedRow();
+			
+			if(ligneSelectionnee != -1)
+			{
+				Bateau bateau = modele.retournerBateau(ligneSelectionnee);
+				BateauDAO.supprimerBateau(bateau);
+				bateau.getEmplacement().setBateau(null);
+				modele.refresh();
+			}
+		}	
+	}
+	
+	class ModifierBateauListener implements ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) {

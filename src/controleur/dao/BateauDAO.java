@@ -59,5 +59,16 @@ public class BateauDAO {
 		return listeBateau;		
 	}
 	
+	/**
+	 * Retourner le bateau se trouvant a un emplacement donne
+	 * @param emplacement
+	 * @return le bateau
+	 */
+	public static Bateau retournerBateauDeLEmplacement(Emplacement emplacement)
+	{
+		Query requete = SetupEM.getEm().createQuery("from Bateau b WHERE b.emplacement = ?1");
+		requete.setParameter(1, emplacement);
+		return (Bateau) requete.getSingleResult();
+	}
 	
 }
