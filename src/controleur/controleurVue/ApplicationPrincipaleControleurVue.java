@@ -116,7 +116,6 @@ public class ApplicationPrincipaleControleurVue
 				}else 
 				{
 					new EditerBateauVue(null, "Ajouter un bateau", null);
-					actualiserTexte(quai);
 				}
 		}
 	}

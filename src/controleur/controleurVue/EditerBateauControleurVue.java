@@ -134,6 +134,7 @@ public class EditerBateauControleurVue {
 				
 				maFenetre.dispose();
 				ApplicationPrincipaleVue.getModele().refresh();
+				ApplicationPrincipaleControleurVue.actualiserTexte(bateau.getEmplacement().getQuai());
 			}catch(NumberFormatException exception)
 			{
 				JOptionPane.showMessageDialog(null, "Champ(s) vide(s) ou incorrect(s)","Erreur de saisie",JOptionPane.ERROR_MESSAGE);
