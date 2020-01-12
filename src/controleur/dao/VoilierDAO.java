@@ -1,8 +1,10 @@
 package controleur.dao;
 
-import javax.persistence.EntityManager;
+import java.util.List;
 
-import modele.BateauMoteur;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import modele.Emplacement;
 import modele.Proprietaire;
 import modele.Voilier;
@@ -68,5 +70,12 @@ public class VoilierDAO {
 		em.getTransaction().commit();
 
 		return voilier;
+	}
+	
+	public List<Voilier> trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(double valeur)
+	{
+		Query requete = SetupEM.getEm().createQuery("from Voilier v WHERE v.surfaceTotaleVoile > = ?1");
+		requete.setParameter(1, valeur);
+		return requete.getResultList();
 	}
 }
