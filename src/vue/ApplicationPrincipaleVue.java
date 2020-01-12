@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -32,18 +34,19 @@ public class ApplicationPrincipaleVue extends JFrame {
 	public ApplicationPrincipaleVue(){
 		this.setTitle("Gestion du Port");
 		this.add(panelwest, BorderLayout.WEST);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		// Creation boite verticale pour inserer les composants du panel de gauche
 		Box verticalBox = Box.createVerticalBox();
 		panelwest.add(verticalBox);
 		quais = new JLabel("Quais");
 		comboboxQuais = new JComboBox<Quai>();
-		gestionQuais = new JButton("Gestion quais");
-		gestionProprietaires = new JButton("Gestion propriétaires");
-		gestionEmplacements = new JButton("Gestion emplacements");
-		gestionBateaux = new JLabel("Gestion bateaux");
-		ajouter = new JButton("Ajouter");
-		supprimer = new JButton("Supprimer");
-		modifier = new JButton("Modifier");
+		gestionQuais = new JButton("Gestion quais                  ", new ImageIcon("images"+File.separator+"quai.png"));
+		gestionProprietaires = new JButton("Gestion propriétaires    ", new ImageIcon("images"+File.separator+"marin.png"));
+		gestionEmplacements = new JButton("Gestion emplacements", new ImageIcon("images"+File.separator+"emplacement.png"));
+		gestionBateaux = new JLabel("Gestion bateaux :");
+		ajouter = new JButton("Ajouter      ", new ImageIcon("images"+File.separator+"ajouter.png"));
+		supprimer = new JButton("Supprimer", new ImageIcon("images"+File.separator+"supprimer.png"));
+		modifier = new JButton("Modifier    ", new ImageIcon("images"+File.separator+"modifier.png"));
 		
 		verticalBox.add(quais);
 		verticalBox.add(comboboxQuais);
