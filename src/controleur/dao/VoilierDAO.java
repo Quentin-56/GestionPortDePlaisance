@@ -72,9 +72,9 @@ public class VoilierDAO {
 		return voilier;
 	}
 	
-	public List<Voilier> trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(double valeur)
+	public static List<Voilier> trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(double valeur)
 	{
-		Query requete = SetupEM.getEm().createQuery("from Voilier v WHERE v.surfaceTotaleVoile > = ?1");
+		Query requete = SetupEM.getEm().createQuery("from Voilier v WHERE v.surfaceTotaleVoile > ?1");
 		requete.setParameter(1, valeur);
 		return requete.getResultList();
 	}

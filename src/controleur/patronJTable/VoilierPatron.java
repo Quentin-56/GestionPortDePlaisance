@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
+
+import controleur.dao.VoilierDAO;
 import modele.Bateau;
 import modele.Quai;
 import modele.Voilier;
@@ -30,15 +32,10 @@ public class VoilierPatron extends AbstractTableModel{
 		return listesVoiliers.get(rowIndex);
 	}
 
-	public void refresh()
+	public void refresh(Double valeur)
 	{
-		Quai quai = (Quai) ApplicationPrincipaleVue.getComboboxQuais().getSelectedItem();
-		if(quai != null)
-		{
-			//List<Bateau> bateaux = QuaiDAO.retournerBateauDuQuai(quai);
-			//listesVoiliers = bateaux;
+			listesVoiliers = VoilierDAO.trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(valeur);
 			fireTableDataChanged();
-		}
 	}
 	
 	@Override

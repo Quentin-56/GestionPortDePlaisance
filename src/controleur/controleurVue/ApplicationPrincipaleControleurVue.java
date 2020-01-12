@@ -14,11 +14,12 @@ import controleur.patronJTable.BateauPatron;
 import modele.Bateau;
 import modele.Port;
 import modele.Quai;
-import vue.EditerBateauVue;
 import vue.ApplicationPrincipaleVue;
+import vue.EditerBateauVue;
 import vue.EmplacementVue;
 import vue.ProprietaireVue;
 import vue.QuaiVue;
+import vue.VoilierVue;
 
 public class ApplicationPrincipaleControleurVue 
 {
@@ -162,18 +163,20 @@ public class ApplicationPrincipaleControleurVue
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String retour = JOptionPane.showInputDialog(null,"Afficher les voiliers ayant une voile plus grande ou égalee à la valeur saisie","Recherche sur voilier", JOptionPane.QUESTION_MESSAGE);
 			
-			if(!retour.isEmpty()){
-				try{
-					
+			try{
+			JOptionPane jop = new JOptionPane();
+			String saisie = jop.showInputDialog(null,"Afficher les voiliers ayant une voile plus grande à la valeur saisie","Recherche sur voilier", JOptionPane.QUESTION_MESSAGE);
+			Double valeurSaisie = Double.parseDouble(saisie);
+			new VoilierVue(valeurSaisie);
+			if(jop.CANCEL_OPTION == 1)
+			{
+				
+			}
 				}catch(NumberFormatException e){
 					 JOptionPane d = new JOptionPane();
 				     JOptionPane.showMessageDialog( null, "Des nombres sont attendus", "Recherche sur voilier", JOptionPane.ERROR_MESSAGE);
-					
 				}
-			}
-			
 		}
 	}
 }
