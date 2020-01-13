@@ -55,7 +55,7 @@ public class ApplicationPrincipaleVue extends JFrame {
 		bateauVoile = new JLabel();
 		bateauMoteur = new JLabel();
 		
-		voilier = new JButton("Recherche sur voilier");
+		voilier = new JButton("Recherche sur voilier", new ImageIcon("images"+File.separator+"voilier.png"));
 		verticalBox.add(quais);
 		verticalBox.add(comboboxQuais);
 		verticalBox.add(Box.createRigidArea(new Dimension(0, 20)));
