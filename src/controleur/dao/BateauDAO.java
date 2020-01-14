@@ -93,6 +93,11 @@ public class BateauDAO {
 		return requete.getResultList().size();
 	}
 	
+	/**
+	 * Verifie si un bateau est un voilier 
+	 * @param bateau
+	 * @return true si est un voilier sinon false
+	 */
 	public static boolean estUnVoilier(Bateau bateau)
 	{
 		Query requete = SetupEMDAO.getEm().createQuery("from Voilier v WHERE v.idBateau = ?1");
