@@ -15,8 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controleur.controleurVue.EditerBateauControleurVue;
-import controleur.controleurVue.TypeDeBateau;
+import controleur.controleur.EditerBateauControleur;
+import controleur.controleur.TypeDeBateau;
 import modele.Bateau;
 import modele.Emplacement;
 import modele.Proprietaire;
@@ -105,7 +105,7 @@ public class EditerBateauVue extends JDialog {
 		verticalBox.add(emplacementLabel);
 		verticalBox.add(emplacement);
 		
-		new EditerBateauControleurVue(nom, poids, typeTF,proprietaire, emplacement, typeLabel, this, centerPanel,type, bateau);
+		new EditerBateauControleur(nom, poids, typeTF,proprietaire, emplacement, typeLabel, this, centerPanel,type, bateau);
 	}
 
 	// Definir les actions sur les boutons

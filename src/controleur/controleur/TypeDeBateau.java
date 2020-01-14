@@ -1,4 +1,4 @@
-package controleur.controleurVue;
+package controleur.controleur;
 
 public enum TypeDeBateau {
 	BateauAVoile("Voilier"),

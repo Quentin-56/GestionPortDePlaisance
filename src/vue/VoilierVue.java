@@ -9,7 +9,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import controleur.patronJTable.VoilierPatron;
+import controleur.patron.VoilierPatron;
 
 public class VoilierVue extends JFrame {
 

@@ -1,4 +1,4 @@
-package controleur.patronJTable;
+package controleur.patron;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;

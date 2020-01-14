@@ -1,4 +1,4 @@
-package controleur.controleurVue;
+package controleur.controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,15 +9,15 @@ import javax.swing.JTextField;
 
 import modele.Proprietaire;
 import controleur.dao.ProprietaireDAO;
-import controleur.patronJTable.ProprietairePatron;
+import controleur.patron.ProprietairePatron;
 import vue.ProprietaireVue;
 
-public class ProprietaireControleurVue {
+public class ProprietaireControleur {
 	
 	private JTable table = ProprietaireVue.getTable();
 	private ProprietairePatron modele = ProprietaireVue.getModele();
 	
-	public ProprietaireControleurVue(){
+	public ProprietaireControleur(){
 		ProprietaireVue.ajouterListener(new AjouterListener());
 		ProprietaireVue.modifierListener(new ModifierListener());
 		ProprietaireVue.supprimerListener(new SupprimerListener());

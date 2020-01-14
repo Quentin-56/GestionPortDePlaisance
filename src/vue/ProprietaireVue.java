@@ -15,8 +15,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import controleur.controleurVue.ProprietaireControleurVue;
-import controleur.patronJTable.ProprietairePatron;
+import controleur.controleur.ProprietaireControleur;
+import controleur.patron.ProprietairePatron;
 
 public class ProprietaireVue extends JFrame{
 	private JPanel panelwest = new JPanel();
@@ -53,7 +53,7 @@ public class ProprietaireVue extends JFrame{
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		new ProprietaireControleurVue();
+		new ProprietaireControleur();
 
 	}
 	

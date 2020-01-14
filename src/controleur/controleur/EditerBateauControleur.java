@@ -1,4 +1,4 @@
-package controleur.controleurVue;
+package controleur.controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +24,7 @@ import modele.Voilier;
 import vue.ApplicationPrincipaleVue;
 import vue.EditerBateauVue;
 
-public class EditerBateauControleurVue {
+public class EditerBateauControleur {
 	
 	private JTextField nom;
 	private JTextField poids;
@@ -38,7 +38,7 @@ public class EditerBateauControleurVue {
 	private Bateau bateau;
 
 	
-	public EditerBateauControleurVue(JTextField nom,JTextField poids,JTextField typeTF,JComboBox<Proprietaire> proprietaire,
+	public EditerBateauControleur(JTextField nom,JTextField poids,JTextField typeTF,JComboBox<Proprietaire> proprietaire,
 			JComboBox<Emplacement> emplacement,JLabel typeLabel,EditerBateauVue maFenetre,JPanel centerPanel,
 			JComboBox<TypeDeBateau> type, Bateau bateau) {
 		
@@ -134,7 +134,7 @@ public class EditerBateauControleurVue {
 				
 				maFenetre.dispose();
 				ApplicationPrincipaleVue.getModele().refresh();
-				ApplicationPrincipaleControleurVue.actualiserTexte(bateau.getEmplacement().getQuai());
+				ApplicationPrincipaleControleur.actualiserTexte(bateau.getEmplacement().getQuai());
 				
 				
 			}catch(NumberFormatException exception)

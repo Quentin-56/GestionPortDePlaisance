@@ -15,8 +15,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import controleur.controleurVue.QuaiControleurVue;
-import controleur.patronJTable.QuaiPatron;
+import controleur.controleur.QuaiControleur;
+import controleur.patron.QuaiPatron;
 import modele.Port;
 
 public class QuaiVue extends JFrame
@@ -54,7 +54,7 @@ public class QuaiVue extends JFrame
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		new QuaiControleurVue(port);
+		new QuaiControleur(port);
 	}
 
 	//Definir les actions sur les boutons

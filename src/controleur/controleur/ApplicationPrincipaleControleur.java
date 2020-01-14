@@ -1,4 +1,4 @@
-package controleur.controleurVue;
+package controleur.controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import javax.swing.JTable;
 import controleur.dao.BateauDAO;
 import controleur.dao.EmplacementDAO;
 import controleur.dao.PortDAO;
-import controleur.patronJTable.BateauPatron;
+import controleur.patron.BateauPatron;
 import modele.Bateau;
 import modele.Port;
 import modele.Quai;
@@ -21,7 +21,7 @@ import vue.ProprietaireVue;
 import vue.QuaiVue;
 import vue.VoilierVue;
 
-public class ApplicationPrincipaleControleurVue 
+public class ApplicationPrincipaleControleur 
 {
 	
 	private JComboBox comboboxQuai = ApplicationPrincipaleVue.getComboboxQuais();
@@ -30,7 +30,7 @@ public class ApplicationPrincipaleControleurVue
 	private JTable table = ApplicationPrincipaleVue.getTable();
 	private Quai quai;
 	
-	public ApplicationPrincipaleControleurVue()
+	public ApplicationPrincipaleControleur()
 	{
 		ApplicationPrincipaleVue.comboboxListener(new ComboboxListener());
 		ApplicationPrincipaleVue.gestionQuaisListener(new GestionQuaisListener());

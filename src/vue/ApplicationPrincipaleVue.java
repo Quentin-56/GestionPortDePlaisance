@@ -18,8 +18,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import controleur.controleurVue.ApplicationPrincipaleControleurVue;
-import controleur.patronJTable.BateauPatron;
+import controleur.controleur.ApplicationPrincipaleControleur;
+import controleur.patron.BateauPatron;
 import modele.Quai;
 
 public class ApplicationPrincipaleVue extends JFrame {
@@ -89,7 +89,7 @@ public class ApplicationPrincipaleVue extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		new ApplicationPrincipaleControleurVue();
+		new ApplicationPrincipaleControleur();
 	}
 	
 	//Definir les actions sur les boutons

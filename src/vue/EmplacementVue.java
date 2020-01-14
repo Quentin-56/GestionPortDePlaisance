@@ -18,9 +18,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
 import modele.Quai;
-import controleur.controleurVue.EmplacementControleurVue;
-import controleur.patronJTable.EmplacementPatron;
-import controleur.patronJTable.ProprietairePatron;
+import controleur.controleur.EmplacementControleur;
+import controleur.patron.EmplacementPatron;
+import controleur.patron.ProprietairePatron;
 
 public class EmplacementVue extends JFrame {
 	private JPanel panelwest = new JPanel();
@@ -63,7 +63,7 @@ public class EmplacementVue extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		new EmplacementControleurVue(quai);
+		new EmplacementControleur(quai);
 	}
 	//Definir les actions sur les boutons
 	public static void ajouterListener(ActionListener ajouterListener) {

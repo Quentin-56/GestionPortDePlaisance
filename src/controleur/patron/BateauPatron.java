@@ -1,11 +1,11 @@
-package controleur.patronJTable;
+package controleur.patron;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import controleur.controleurVue.ApplicationPrincipaleControleurVue;
+import controleur.controleur.ApplicationPrincipaleControleur;
 import controleur.dao.QuaiDAO;
 import modele.Bateau;
 import modele.Quai;

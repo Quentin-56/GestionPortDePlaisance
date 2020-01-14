@@ -1,4 +1,4 @@
-package controleur.controleurVue;
+package controleur.controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,18 +9,18 @@ import javax.swing.JTextField;
 
 import controleur.dao.PortDAO;
 import controleur.dao.QuaiDAO;
-import controleur.patronJTable.QuaiPatron;
+import controleur.patron.QuaiPatron;
 import modele.Port;
 import modele.Quai;
 import vue.ApplicationPrincipaleVue;
 import vue.QuaiVue;
 
-public class QuaiControleurVue 
+public class QuaiControleur 
 {
 	private JTable table = QuaiVue.getTable();
 	private QuaiPatron modele = QuaiVue.getModele();
 	
-	public QuaiControleurVue(Port port)
+	public QuaiControleur(Port port)
 	{
 		modele.setListesQuais(QuaiDAO.recupererTousLesQuaisDuPort());
 		
