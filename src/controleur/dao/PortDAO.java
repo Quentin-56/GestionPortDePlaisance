@@ -11,7 +11,7 @@ public class PortDAO {
 	 */
 	public static void creationDuPort(){
 		Port port = new Port();
-		EntityManager em =SetupEM.getEm();
+		EntityManager em =SetupEMDAO.getEm();
 		em.getTransaction().begin();
 	    //Ajout du proprio dans la bdd
 	    em.persist(port);
@@ -24,7 +24,7 @@ public class PortDAO {
 	 */
 	public static Port retournerPort()
 	{
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
         em.getTransaction().begin();
 
         Port port = em.find(Port.class, 1);

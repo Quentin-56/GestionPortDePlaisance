@@ -7,7 +7,7 @@ import controleur.dao.EmplacementDAO;
 import controleur.dao.PortDAO;
 import controleur.dao.ProprietaireDAO;
 import controleur.dao.QuaiDAO;
-import controleur.dao.SetupEM;
+import controleur.dao.SetupEMDAO;
 import controleur.dao.VoilierDAO;
 import modele.Emplacement;
 import modele.Port;
@@ -18,9 +18,9 @@ public class MainBDD {
 	
 	public static void main(String[] args) {
 		
-		new SetupEM();
+		new SetupEMDAO();
 		
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		
 		//Creation du port
 		PortDAO.creationDuPort();

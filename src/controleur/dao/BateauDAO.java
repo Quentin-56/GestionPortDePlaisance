@@ -20,7 +20,7 @@ public class BateauDAO {
 	 */
 	public static void ajouterBateau(String nom, Double poids, Emplacement emplacement, Proprietaire proprietaire ){
 		Bateau bateau = new Bateau(nom,poids,proprietaire,emplacement);
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		em.persist(bateau);
 		em.getTransaction().commit();
@@ -31,7 +31,7 @@ public class BateauDAO {
 	 * @param bateau le bateau modifie
 	 */
 	public static void modifierBateau(Bateau bateau){		
-		EntityManager em =SetupEM.getEm();
+		EntityManager em =SetupEMDAO.getEm();
 		
 	    em.getTransaction().begin();
 	    
@@ -44,7 +44,7 @@ public class BateauDAO {
 	 * @param quai Bateau a supprimer
 	 */
 	public static void supprimerBateau(Bateau bateau){
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		em.remove(bateau);
 		em.getTransaction().commit();
@@ -55,7 +55,7 @@ public class BateauDAO {
 	 * @return liste des bateaux
 	 */
 	public static List<Bateau> recupererLesBateauxs(){
-		Query requete = SetupEM.getEm().createQuery("from Bateau ");
+		Query requete = SetupEMDAO.getEm().createQuery("from Bateau ");
 		List<Bateau> listeBateau = requete.getResultList();
 		return listeBateau;		
 	}
@@ -67,7 +67,7 @@ public class BateauDAO {
 	 */
 	public static Bateau retournerBateauDeLEmplacement(Emplacement emplacement)
 	{
-		Query requete = SetupEM.getEm().createQuery("from Bateau b WHERE b.emplacement = ?1");
+		Query requete = SetupEMDAO.getEm().createQuery("from Bateau b WHERE b.emplacement = ?1");
 		requete.setParameter(1, emplacement);
 		return (Bateau) requete.getSingleResult();
 	}
@@ -78,7 +78,7 @@ public class BateauDAO {
 	 * @return
 	 */
 	public static int recupererNbVoilierDunQuai(Quai quai){
-		Query requete = SetupEM.getEm().createQuery("from Voilier v where v.emplacement in ( select e from Emplacement e where e.quai = ?1)");
+		Query requete = SetupEMDAO.getEm().createQuery("from Voilier v where v.emplacement in ( select e from Emplacement e where e.quai = ?1)");
 		requete.setParameter(1, quai);
 		return requete.getResultList().size();
 	}
@@ -88,14 +88,14 @@ public class BateauDAO {
 	 * @return
 	 */
 	public static int recupererNbBateauMoteurDunQuai(Quai quai){
-		Query requete = SetupEM.getEm().createQuery("from BateauMoteur v where v.emplacement in (select e from Emplacement e where e.quai = ?1)");
+		Query requete = SetupEMDAO.getEm().createQuery("from BateauMoteur v where v.emplacement in (select e from Emplacement e where e.quai = ?1)");
 		requete.setParameter(1, quai);
 		return requete.getResultList().size();
 	}
 	
 	public static boolean estUnVoilier(Bateau bateau)
 	{
-		Query requete = SetupEM.getEm().createQuery("from Voilier v WHERE v.idBateau = ?1");
+		Query requete = SetupEMDAO.getEm().createQuery("from Voilier v WHERE v.idBateau = ?1");
 		requete.setParameter(1, bateau.getIdBateau());
 
 		if(requete.getResultList().size() == 0)

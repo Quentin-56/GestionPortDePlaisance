@@ -20,7 +20,7 @@ public class QuaiDAO {
 	 */
 	public static void ajouterQuai(int code, int nombreEmplacements, Port port){
 		Quai quai = new Quai(code, nombreEmplacements, new ArrayList(), port);
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		//Ajout du quai dans la BDD
 		em.persist(quai);
@@ -32,7 +32,7 @@ public class QuaiDAO {
 	 * @param quai le quai modifier
 	 */
 	public static void modifierQuai(Quai quai){
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		em.merge(quai);
 		em.getTransaction().commit();
@@ -42,7 +42,7 @@ public class QuaiDAO {
 	 * @param quai Quai a supprimer
 	 */
 	public static void supprimerQuai(Quai quai){
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		
 		em.merge(quai);
@@ -57,7 +57,7 @@ public class QuaiDAO {
 	 * @return liste de quai
 	 */
 	public static List<Quai> recupererTousLesQuaisDuPort(){
-		Query requete = SetupEM.getEm().createQuery("from Quai");
+		Query requete = SetupEMDAO.getEm().createQuery("from Quai");
 		List<Quai> listeQuai = requete.getResultList();
 		return listeQuai;
 	}
@@ -68,7 +68,7 @@ public class QuaiDAO {
 	 * @return le quai associe au code
 	 */
 	public static Quai trouverQuaiAvecSonCode(int code){
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
         em.getTransaction().begin();
 
         Quai quai = em.find(Quai.class, code);
@@ -83,7 +83,7 @@ public class QuaiDAO {
 	 * @return Vrai il existe Faux sinon
 	 */
 	public static Boolean estUnQuai(int code){
-		Query requete = SetupEM.getEm().createQuery("from Quai q where q.code = ?1");
+		Query requete = SetupEMDAO.getEm().createQuery("from Quai q where q.code = ?1");
 		requete.setParameter(1, code);
 		if(requete.getResultList().isEmpty()){
 			return false;
@@ -98,7 +98,7 @@ public class QuaiDAO {
 	 */
 	public static List<Bateau> retournerBateauDuQuai(Quai quai)
 	{
-		Query requete = SetupEM.getEm().createQuery("FROM Bateau b1 WHERE b1.idBateau IN (SELECT b2.idBateau FROM Bateau b2 INNER JOIN Emplacement e ON b2.emplacement = e.bateau WHERE e.quai = ?1 )");
+		Query requete = SetupEMDAO.getEm().createQuery("FROM Bateau b1 WHERE b1.idBateau IN (SELECT b2.idBateau FROM Bateau b2 INNER JOIN Emplacement e ON b2.emplacement = e.bateau WHERE e.quai = ?1 )");
 		requete.setParameter(1, quai);
 		List<Bateau> listeid = requete.getResultList();
 		return listeid;

@@ -22,7 +22,7 @@ public class VoilierDAO {
 	 */
 	public static void ajouterVoilier(String nom, Double poids, Proprietaire proprietaire, double surfaceTotaleVoile,Emplacement emplacement) {
 		 Voilier voilier = new Voilier(nom, poids, proprietaire, surfaceTotaleVoile, emplacement);
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		// Ajout du proprio dans la bdd
 		em.persist(voilier);
@@ -35,7 +35,7 @@ public class VoilierDAO {
 	 */
 	public static void modifierVoilier(Voilier voilier) {
 
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 
 		em.getTransaction().begin();
 
@@ -49,7 +49,7 @@ public class VoilierDAO {
 	 * @param voilier
 	 */
 	public static void supprimerVoilier(Voilier voilier) {
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 
 		em.remove(voilier);
@@ -63,7 +63,7 @@ public class VoilierDAO {
 	 * @return le voilier associe a l'id
 	 */
 	public static Voilier trouverVoilierAvecSonId(int idVoilier) {
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 
 		Voilier voilier = em.find(Voilier.class, idVoilier);
@@ -73,9 +73,15 @@ public class VoilierDAO {
 		return voilier;
 	}
 	
+	/**
+	 * Recupere les voiliers ayant une surface total de voile superieur a la valeur saisie
+	 * @param valeur
+	 * @param quai
+	 * @return la liste des voiliers
+	 */
 	public static List<Voilier> trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(double valeur, Quai quai)
 	{
-		Query requete = SetupEM.getEm().createQuery("From Voilier v where v.surfaceTotaleVoile > ?1 and v.emplacement  in (select e from Emplacement e where e.quai =?2)" + 
+		Query requete = SetupEMDAO.getEm().createQuery("From Voilier v where v.surfaceTotaleVoile > ?1 and v.emplacement  in (select e from Emplacement e where e.quai =?2)" + 
 				"");
 		requete.setParameter(2, quai);
 		requete.setParameter(1, valeur);

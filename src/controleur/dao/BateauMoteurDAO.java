@@ -18,7 +18,7 @@ public class BateauMoteurDAO {
 	 */
 	public static void ajouterBateauMoteur(String nom, Double poids, Proprietaire proprietaire, int nombreChevauxVapeur,Emplacement emplacement) {
 		BateauMoteur bateauMoteur = new BateauMoteur(nom, poids, proprietaire, nombreChevauxVapeur, emplacement);
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		// Ajout du proprio dans la bdd
 		em.persist(bateauMoteur);
@@ -31,7 +31,7 @@ public class BateauMoteurDAO {
 	 */
 	public static void modifierBateauMoteur(BateauMoteur bateauMoteur) {
 
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 
 		em.getTransaction().begin();
 
@@ -45,7 +45,7 @@ public class BateauMoteurDAO {
 	 * @param bateauMoteur
 	 */
 	public static void supprimerBateauMoteur(BateauMoteur bateauMoteur) {
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 
 		em.remove(bateauMoteur);
@@ -59,7 +59,7 @@ public class BateauMoteurDAO {
 	 * @return le bateau moteur associe a l'id
 	 */
 	public static BateauMoteur trouverBateauMoteurAvecSonId(int idBateau) {
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 
 		BateauMoteur bateauMoteur = em.find(BateauMoteur.class, idBateau);

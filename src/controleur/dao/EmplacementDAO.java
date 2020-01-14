@@ -22,7 +22,7 @@ public class EmplacementDAO {
 	 */
 	public static void ajouterEmplacement(int code, double taille, Quai quai){
 		Emplacement emplacement = new Emplacement(code, taille, null, quai);
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		em.persist(emplacement);
 		em.getTransaction().commit();
@@ -33,7 +33,7 @@ public class EmplacementDAO {
 	 * @param emplacement emplacement modifie
 	 */
 	public static void modifierEmplacement(Emplacement emplacement){
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		em.merge(emplacement);
 		em.getTransaction().commit();
@@ -43,7 +43,7 @@ public class EmplacementDAO {
 	 * @param quai Emplacement a supprimer
 	 */
 	public static void supprimerEmplacement(Emplacement emplacement){
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 		em.getTransaction().begin();
 		em.remove(emplacement);
 		em.getTransaction().commit();
@@ -55,7 +55,7 @@ public class EmplacementDAO {
 	 * @return liste d'emplacement
 	 */
 	public static List<Emplacement> recupererLesEmplacementsDunQuai(Quai quai){
-		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.quai = ?1");
+		Query requete = SetupEMDAO.getEm().createQuery("from Emplacement e where e.quai = ?1");
 		requete.setParameter(1, quai);
 		List<Emplacement> listeEmplacement = requete.getResultList();
 		return listeEmplacement;		
@@ -66,7 +66,7 @@ public class EmplacementDAO {
 	 * @return nombre d'emplacements cree
 	 */
 	public static int recupererNombreEmplacementCreeDansQuai(Quai quai){
-		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.quai = ?1");
+		Query requete = SetupEMDAO.getEm().createQuery("from Emplacement e where e.quai = ?1");
 		requete.setParameter(1, quai);
 		return requete.getResultList().size();
 	}
@@ -78,7 +78,7 @@ public class EmplacementDAO {
 	 */
 	public static int recupererNombreEmplacementOccupeDansQuai(Quai quai)
 	{
-		Query requete = SetupEM.getEm().createQuery("FROM Emplacement e INNER JOIN Bateau b ON e.bateau = b.emplacement where e.quai = ?1");
+		Query requete = SetupEMDAO.getEm().createQuery("FROM Emplacement e INNER JOIN Bateau b ON e.bateau = b.emplacement where e.quai = ?1");
 		requete.setParameter(1, quai);
 		return requete.getResultList().size();
 	}
@@ -89,7 +89,7 @@ public class EmplacementDAO {
 	 * @return l'emplacement associe au code
 	 */
 	public static Emplacement trouverEmplacementAvecSonCode(int code){
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
         em.getTransaction().begin();
 
         Emplacement emplacement = em.find(Emplacement.class, code);
@@ -105,7 +105,7 @@ public class EmplacementDAO {
 	 * @return Vrai il existe Faux sinon
 	 */
 	public static Boolean estUnEmplacement(int code){
-		Query requete = SetupEM.getEm().createQuery("from Emplacement e where e.code = ?1");
+		Query requete = SetupEMDAO.getEm().createQuery("from Emplacement e where e.code = ?1");
 		requete.setParameter(1, code);
 		if(requete.getResultList().isEmpty()){
 			return false;

@@ -17,7 +17,7 @@ public class ProprietaireDAO {
 	 */
 	public static void ajouterProprietaire(String nom, String adresse){
 		Proprietaire proprio = new Proprietaire(nom, adresse, new ArrayList());
-		EntityManager em =SetupEM.getEm();
+		EntityManager em =SetupEMDAO.getEm();
 	    em.getTransaction().begin();
 	    //Ajout du proprio dans la bdd
 	    em.persist(proprio);
@@ -29,7 +29,7 @@ public class ProprietaireDAO {
 	 */
 	public static void modifierProprietaire(Proprietaire proprio){
 
-		EntityManager em = SetupEM.getEm();
+		EntityManager em = SetupEMDAO.getEm();
 
 	    em.getTransaction().begin();
 	        
@@ -42,7 +42,7 @@ public class ProprietaireDAO {
 	 * @param idProprioASupprimer
 	 */
 	public static void supprimerProprietaire(Proprietaire proprio){
-		EntityManager em =SetupEM.getEm();
+		EntityManager em =SetupEMDAO.getEm();
         em.getTransaction().begin();
 
         em.remove(proprio);
@@ -55,7 +55,7 @@ public class ProprietaireDAO {
 	 * @return Proprietaire
 	 */
 	public static Proprietaire trouverProprietaireAvecSonId(int idProprio){
-		EntityManager em =SetupEM.getEm();
+		EntityManager em =SetupEMDAO.getEm();
         em.getTransaction().begin();
 
         Proprietaire proprio = em.find(Proprietaire.class, idProprio);
@@ -69,7 +69,7 @@ public class ProprietaireDAO {
 	 * @return liste de proprietaire
 	 */
 	public static List<Proprietaire> recupererTousLesProprietaires(){
-		Query requete = SetupEM.getEm().createQuery("from Proprietaire");
+		Query requete = SetupEMDAO.getEm().createQuery("from Proprietaire");
 	    List<Proprietaire> listeProprio =requete.getResultList();
 	    return listeProprio;
 
