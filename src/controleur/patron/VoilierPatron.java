@@ -3,6 +3,7 @@ package controleur.patron;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
 import controleur.dao.VoilierDAO;
@@ -32,9 +33,10 @@ public class VoilierPatron extends AbstractTableModel{
 		return listesVoiliers.get(rowIndex);
 	}
 
-	public void refresh(Double valeur)
+	public void refresh(Double valeur, JLabel nombreDeVoilier)
 	{
 			listesVoiliers = VoilierDAO.trouverVoilierAvecSurfaceDeVoileSuperieureAValeur(valeur, (Quai)ApplicationPrincipaleVue.getComboboxQuais().getSelectedItem());
+			nombreDeVoilier.setText("Nombre de voilier trouvé : "+listesVoiliers.size());
 			fireTableDataChanged();
 	}
 	

@@ -13,7 +13,7 @@ import vue.ApplicationPrincipaleVue;
 
 public class BateauPatron extends AbstractTableModel{
 	
-	private String[] entetes = {"Nom", "Poids", "Propietaire"};
+	private String[] entetes = {"Nom", "Poids", "Propietaire", "Emplacement"};
 	private List<Bateau> listesBateaux = new ArrayList<Bateau>(); 
 	
 	@Override
@@ -54,6 +54,9 @@ public class BateauPatron extends AbstractTableModel{
 	        	
 	        case 2:
 	        	return listesBateaux.get(rowIndex).getPropietaire().getNom();
+	        	
+	        case 3 :
+	        	return listesBateaux.get(rowIndex).getEmplacement();
 	        
 	 		default:
 	 			return null; //Ne devrait jamais arriver	

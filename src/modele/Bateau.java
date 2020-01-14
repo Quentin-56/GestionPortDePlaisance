@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Bateau {
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idBateau;
 	
 	private String nom;

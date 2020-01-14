@@ -3,7 +3,6 @@ package modele;
 import javax.persistence.Entity;
 
 @Entity
-//@PrimaryKeyJoinColumn(name = "idBateau")
 public class BateauMoteur extends Bateau{
 	
 	private int nombreChevauxVapeur;
