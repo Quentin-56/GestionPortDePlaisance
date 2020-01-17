@@ -2,7 +2,7 @@
 <p><em> <strong>Auteurs : </strong>Florian GIGOT & Quentin LEVIEUX</em></p>
 <h2>Introduction</h2>
 <p><em>
-Réalisation d'une application permettant à un chef de port de gérer sa port de de plaisance.<br /><br />  
+Réalisation d'une application permettant à un chef de port de gérer son port de de plaisance.<br /><br />  
 Via cette application, un responsable de port peut gérer facilement ses quais, ses emplacements de bateau, ses bateaux et les propriétaires de bateau.<br /><br /> 
 <strong>Temps pour développer le projet :</strong> 1 semaine <br />
 <strong>Langage :</strong> JAVA (avec librairie JDBC et Hibernate) <br />
