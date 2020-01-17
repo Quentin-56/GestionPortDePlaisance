@@ -5,7 +5,7 @@
 Réalisation d'une application permettant à un chef de port de gérer son port de de plaisance.<br /><br />  
 Via cette application, un responsable de port peut gérer facilement ses quais, ses emplacements de bateau, ses bateaux et les propriétaires de bateau.<br /><br /> 
 <strong>Temps pour développer le projet :</strong> 1 semaine <br />
-<strong>Langage :</strong> JAVA (avec librairie JDBC et Hibernate) <br />
+<strong>Langage :</strong> JAVA (avec librairies JDBC et Hibernate) <br />
 <strong>Interface :</strong> SWING <br />
 <strong>Base de données :</strong> mySQL <br />
 </em></p>
